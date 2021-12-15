@@ -4,16 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./src/routes/index');
+var usersRouter = require('./src/routes/users');
 
-const swaggerUi = require('swagger-ui-express'),
-swaggerDocument = require('./swagger.json');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -28,7 +28,7 @@ app.use('/users', usersRouter);
 // Swagger UI & Options
 var swaggerOptions = {
   customSiteTitle: "CUBES",
-  customfavIcon: "/assets/favicon.ico",
+  customfavIcon: "/public/favicon.ico",
   customCss: '.swagger-ui .topbar { display: none }',
 };
 
