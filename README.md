@@ -20,13 +20,31 @@ Vous devez créer un fichier `.env` à la racine du projet et y copier le conten
 valeurs selon votre environnement.
 
 ```dotenv
+APP_NAME=api-cubes
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_PORT=3000
+APP_URL=http://apicubes.local
 
+# Postgres Database
+DB_CONNECTION=postgres
+DB_PORT=5432
+DB_DATABASE=cubes_db
+DB_USER=admin
+DB_PASSWORD=test123
+
+#Pg Admin
+PGA_MAIL=
+PGA_PASSWORD=
+PGA_PORT=8080
+PGA_LISTEN_PORT=80
 ```
 
 ### Commandes d'Installation et Prise en Main (sous Linux)
 
 ```shell
-#Récupérer le projet depuis github
+# Récupérer le projet depuis github
 git clone git@github.com:paul-lefebvre/api-cubes.git .
 
 # Installe et build les containers du projet
@@ -55,19 +73,21 @@ fichier `.env`.
 
 ## Liens Pratiques
 
-```shell
-# PgAdmin
+#### PgAdmin
+
 http://localhost:8080
 
-# Back Office
+#### Back Office
+
 http://localhost:3000
 
-# ENDPOINT de l'api
+#### ENDPOINT de l'api
+
 http://localhost:3000/api/
 
-# Documentation de l'API
+#### Documentation de l'API
+
 http://localhost:3000/doc
-```
 
 ## Commandes Utiles
 
