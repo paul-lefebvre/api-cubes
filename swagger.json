@@ -1,0 +1,19 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.1",
+      "title": "API REST - CUBES",
+      "description": "Documentation de l'API du projet CUBES"
+    },
+    "host": "localhost:3000",
+    "basePath": "/doc",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+  }
