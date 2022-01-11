@@ -8,14 +8,14 @@ WORKDIR /usr/app
 
 # COPY ALL FOLDERS/FILES NEEDED TO RUN APPLICATION
 COPY app.js ./
-COPY package.json tsconfig.json tslint.json swagger.json ./
+COPY package.json tsconfig.json swagger.json ./
 COPY src ./src
 COPY public ./public
 COPY bin ./bin
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
-RUN npm install 
+RUN npm install --loglevel=error
 
 # FOR EXPOSE PORT TO REFLECT 3000 (IMAGE API)
 EXPOSE 3000
