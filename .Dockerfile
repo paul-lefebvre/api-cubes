@@ -1,5 +1,7 @@
-FROM node:12.22.7
+#FROM postgres:14.1-alpine
+#COPY ./.docker/db/cubes.sql /docker-entrypoint-initdb.d/
 
+FROM node:12.22.7
 # CREATE WORKING FOLDER
 RUN mkdir -p /usr/app
 WORKDIR /usr/app

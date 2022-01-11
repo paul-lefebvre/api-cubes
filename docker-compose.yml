@@ -1,5 +1,19 @@
 version: "3"
 services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes: 
+      - volume_postgres:/var/lib/mysql
+      - ./.docker/db/cubes.sql:/docker-entrypoint-initdb.d/cubes.sql
+
   app-cubes:
     container_name: app-cubes
     build:
@@ -8,38 +22,33 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@${DB_CONNECTION}:${DB_PORT}/${DB_DATABASE}
+      DATABASE_URL: postgres://postgres:postgres@${DB_CONNECTION}:${DB_PORT}/${DB_DATABASE}
       NODE_ENV: development
       PORT: ${APP_PORT}
+      DB_HOST: postgres
+      DB_PORT: ${APP_PORT}
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: lfc_db
     ports:
       - "${APP_PORT}:${APP_PORT}"
-  postgres:
-    container_name: postgres
-    image: postgres:10.4
-    ports:
-      - "${DB_PORT}:${DB_PORT}"
-    volumes: 
-      - ./postgresdata:/var/lib/postgresql/data
-      - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
-    restart: always
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:4.18
+    image: dpage/pgadmin4:6.0
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGA_MAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: lefebvre@antadis.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
       PGADMIN_LISTEN_PORT: ${PGA_LISTEN_PORT}
     ports:
       - "${PGA_PORT}:${PGA_LISTEN_PORT}"
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - volume_pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
+
 volumes:
-    db-data:
-    pgadmin-data:
+    volume_postgres:
+      driver: local
+    volume_pgadmin:
