@@ -24,19 +24,21 @@ APP_NAME=api-cubes
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
+
 APP_PORT=3000
 APP_URL=http://apicubes.local
 
 # Postgres Database
 DB_CONNECTION=postgres
+DB_HOST=postgres
 DB_PORT=5432
-DB_DATABASE=cubes_db
-DB_USER=admin
-DB_PASSWORD=test123
+DB_NAME=lfc_db
+DB_USER=postgres
+DB_PASSWORD=postgres
 
 #Pg Admin
-PGA_MAIL=
-PGA_PASSWORD=
+PGA_MAIL=lefebvre@antadis.com
+PGA_PASSWORD=SuperSecret
 PGA_PORT=8080
 PGA_LISTEN_PORT=80
 ```
