@@ -17,7 +17,7 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait
 RUN chmod +x /wait
 RUN npm install 
 
-# FOR EXPOSE PORT 3000 (PORT OF CUBES API)
+# FOR EXPOSE PORT TO REFLECT 3000 (IMAGE API)
 EXPOSE 3000
 
 # WHEN WE'LL NEED TO START SH BEFORE NPM START

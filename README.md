@@ -9,10 +9,10 @@ Docker : 3.8
 
 ## Liens
 
-- URL du back-office : http://localhost:3000
+- URL du back-office : http://linkforcitizens:3000
 
 - Documentation Express : https://expressjs.com/fr/
-- Documentation de l'API : http://localhost:3000/doc
+- Documentation de l'API : http://linkforcitizens:3000/doc
 
 ## Installation
 
@@ -26,7 +26,7 @@ APP_KEY=
 APP_DEBUG=true
 
 APP_PORT=3000
-APP_URL=http://apicubes.local
+APP_URL=http://linkforcitizens.local
 
 # Postgres Database
 DB_CONNECTION=postgres
@@ -77,19 +77,19 @@ fichier `.env`.
 
 #### PgAdmin
 
-http://localhost:8080
+http://linkforcitizens:8080
 
 #### Back Office
 
-http://localhost:3000
+http://linkforcitizens:3000
 
 #### ENDPOINT de l'api
 
-http://localhost:3000/api/
+http://linkforcitizens:3000/api/
 
 #### Documentation de l'API
 
-http://localhost:3000/doc
+http://linkforcitizens:3000/doc
 
 ## Commandes Utiles
 
