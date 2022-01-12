@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
   export default {
     name: 'notFound',
     components: {},
@@ -20,7 +19,4 @@
   };
 </script>
 
-<style scoped>
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
-  @import "./style.css";
-</style>
+<style scoped src="./style.css"></style>

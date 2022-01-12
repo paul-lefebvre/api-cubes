@@ -80,7 +80,4 @@ import '@/assets/js/login'
   };
 </script>
 
-<style scoped>
-  @charset "UTF-8";
-  @import "./style.css";
-</style>
+<style scoped src="./style.css"></style>
