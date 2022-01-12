@@ -2,10 +2,10 @@
     "openapi": "3.0.0",
     "info": {
       "version": "1.0.1",
-      "title": "API REST - CUBES",
-      "description": "Documentation de l'API du projet CUBES"
+      "title": "API REST - LFC",
+      "description": "Documentation de l'API du projet Link For Citizens"
     },
-    "host": "localhost:3000",
+    "host": "0.0.0.0:3000",
     "basePath": "/doc",
     "tags": [
       {

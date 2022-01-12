@@ -15,8 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/dist', express.static(__dirname + '/dist'));
-app.use(express.static(__dirname + '/public'));
+app.use('/dist', express.static('./dist'));
+app.use('/public', express.static(__dirname + '/public'));
+
 
 
 // OPTIONS
@@ -31,7 +32,7 @@ const vueOptions = {
 
 var swaggerOptions = {
   customSiteTitle: "CUBES",
-  customfavIcon: "/public/favicon.ico",
+  customfavIcon: "public/favicon.ico",
   customCss: '.swagger-ui .topbar { display: none }',
 };
 
@@ -39,6 +40,13 @@ var swaggerOptions = {
 app.get('/api', (req, res) => {
   res.json({message: 'Welcome to Server'});
 });
+
+// SWAGGER UI FOR DOC API
+app.use(
+  '/doc',
+  swaggerUi.serve, 
+  swaggerUi.setup(swaggerDocument, swaggerOptions)
+);
 
 // USE INDEX.HTML OF PUBLIC FOLDER TO USE VUE BUNDLE
 app.get('/', (req, resp) => {
@@ -51,12 +59,7 @@ app.get('/', (req, resp) => {
 });
 
 
-// SWAGGER UI FOR DOC API
-app.use(
-  '/doc',
-  swaggerUi.serve, 
-  swaggerUi.setup(swaggerDocument, swaggerOptions)
-);
+
 
 // CATCH 404 ERRORS
 app.use(function(req, res, next) {
