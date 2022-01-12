@@ -1,4 +1,5 @@
 .git
 .gitignore
 .docker
+dist/
 node_modules/

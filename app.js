@@ -37,7 +37,7 @@ var swaggerOptions = {
 
 // ROUTES API
 app.get('/api', (req, res) => {
-  res.json({message: 'Welcome to the Server'});
+  res.json({message: 'Welcome to Server'});
 });
 
 // USE INDEX.HTML OF PUBLIC FOLDER TO USE VUE BUNDLE
