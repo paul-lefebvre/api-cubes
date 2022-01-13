@@ -8,7 +8,7 @@ WORKDIR /usr/app
 
 # COPY ALL FOLDERS/FILES NEEDED TO RUN APPLICATION
 COPY app.js ./
-COPY package.json tsconfig.json swagger.json eslintrc.js babel.config.js vue.config.js ./
+COPY package.json tsconfig.json swagger.json .eslintrc.js babel.config.js vue.config.js ./
 COPY src ./src
 COPY public ./public
 COPY bin ./bin

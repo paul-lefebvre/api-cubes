@@ -7,7 +7,7 @@
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service build --mode development --watch --dest ./dist",
     "prestart": "",
-    "start": "sudo rm -rf dist | nodemon ./bin/www.js | npm run dev", 
+    "start": "rm -rf dist | nodemon ./bin/www.js | npm run dev",
     "winstart": "del /f ./dist | nodemon ./bin/www.js | npm run dev"
   },
   "dependencies": {

@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   postgres:
     container_name: postgres
     image: postgres:14.1-alpine
@@ -13,7 +12,6 @@ services:
     volumes: 
       - volume_postgres:/var/lib/mysql
       - ./.docker/db/cubes.sql:/docker-entrypoint-initdb.d/cubes.sql
-
   app-cubes:
     container_name: app-cubes
     build:
@@ -32,7 +30,6 @@ services:
       DB_NAME: ${DB_NAME}
     ports:
       - "${APP_PORT}:${APP_PORT}"
-
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:6.0
@@ -47,7 +44,6 @@ services:
       - volume_pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
-
 volumes:
     volume_postgres:
       driver: local
