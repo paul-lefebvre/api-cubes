@@ -29,9 +29,9 @@ Build() {
     echo ""
     echo -e "${TAG}${INFOS}Build in progress...${NC}"
     echo ""
-    docker stop app-cubes > /dev/null 2>&1 &
-    docker rm app-cubes > /dev/null 2>&1 &
-    docker-compose down --remove-orphans > /dev/null 2>&1 &
+    docker stop app-cubes #> /dev/null 2>&1 &
+    docker rm app-cubes #> /dev/null 2>&1 &
+    docker-compose down --remove-orphans #> /dev/null 2>&1 &
     echo ""
     echo -e "${TAG}${SUCCESS}API's Containers removed !${NC}"
     echo ""
@@ -45,15 +45,15 @@ Build() {
 #   START API CONTAINERS
 #===========================
 Start()  {
-    docker restart postgres > /dev/null 2>&1 &
+    docker restart postgres #> /dev/null 2>&1 &
     echo -e "${TAG}${SUCCESS}postgres initialized !"
     echo ""
-    docker restart pgadmin > /dev/null 2>&1 &
+    docker restart pgadmin #> /dev/null 2>&1 &
     echo -e "${TAG}${SUCCESS}pgadmin initialized !"
     echo ""
-    docker stop app-cubes > /dev/null 2>&1 &
-    docker rm app-cubes > /dev/null 2>&1 &
-    docker run -v `pwd`:/usr/app -p 3000:3000 -d --name app-cubes api_app-cubes > /dev/null 2>&1 &
+    docker stop app-cubes #> /dev/null 2>&1 &
+    docker rm app-cubes #> /dev/null 2>&1 &
+    docker run -v `pwd`:/usr/app -p 3000:3000 -d --name app-cubes api_app-cubes #> /dev/null 2>&1 &
     echo -e "${TAG}${SUCCESS}API LinkForCitizens initialized !"
     echo ""
     echo -e "${TAG}${INFOS}Start working at --> ${NC}http://linkforcitizens.local:3000"
