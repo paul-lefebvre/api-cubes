@@ -77,14 +77,17 @@ while getopts ":h :help :-help :b :build :-build" option; do
       b)
         Build
         Start
+        read -p "> PRESS ANY KEY TO EXIT"
         exit;;
       build)
         Build
         Start
+        read -p "> PRESS ANY KEY TO EXIT"
         exit;;
       -build)
         Build
         Start
+        read -p "> PRESS ANY KEY TO EXIT"
         exit;;
       \?) # Invalid option
         echo -e "${TAG}${ERROR}Erreur:${NC} Argument Invalide. -help pour afficher l'aide."
