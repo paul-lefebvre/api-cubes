@@ -81,7 +81,7 @@ http://linkforcitizens:8080
 
 #### Back Office
 
-http://linkforcitizens:3000
+http://linksforcitizens:3000
 
 #### ENDPOINT de l'api
 

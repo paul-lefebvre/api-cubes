@@ -35,7 +35,7 @@ Build() {
     echo ""
     echo -e "${TAG}${SUCCESS}API's Containers removed !${NC}"
     echo ""
-    docker-compose up --build -d
+    docker-compose up --build --force-recreate -d
     echo ""
     echo -e "${TAG}${SUCCESS}Build success !"
     echo ""
