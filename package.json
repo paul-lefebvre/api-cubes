@@ -5,9 +5,10 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service build --mode development --watch --dest dist",
+    "dev": "vue-cli-service build --mode development --watch --dest ./dist",
     "prestart": "",
-    "start": "sudo rm -rf dist | nodemon ./bin/www.js | npm run dev"
+    "start": "sudo rm -rf dist | nodemon ./bin/www.js | npm run dev", 
+    "winstart": "del /f ./dist | nodemon ./bin/www.js | npm run dev"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
