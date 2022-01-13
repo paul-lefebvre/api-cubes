@@ -3,8 +3,8 @@
 
 FROM node:12.22.7
 # CREATE WORKING FOLDER
-RUN mkdir -p /usr/app
-WORKDIR /usr/app
+RUN mkdir -p /app
+WORKDIR /app
 
 # COPY ALL FOLDERS/FILES NEEDED TO RUN APPLICATION
 COPY app.js ./

@@ -30,6 +30,8 @@ services:
       DB_NAME: ${DB_NAME}
     ports:
       - "${APP_PORT}:${APP_PORT}"
+    volumes:
+      - .:/app
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:6.0

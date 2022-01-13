@@ -51,12 +51,10 @@ Start()  {
     docker restart pgadmin #> /dev/null 2>&1 &
     echo -e "${TAG}${SUCCESS}pgadmin initialized !"
     echo ""
-    docker stop app-cubes #> /dev/null 2>&1 &
-    docker rm app-cubes #> /dev/null 2>&1 &
-    docker run -v `pwd`:/usr/app -p 3000:3000 -d --name app-cubes api_app-cubes #> /dev/null 2>&1 &
+    docker restart app-cubes #> /dev/null 2>&1 &
     echo -e "${TAG}${SUCCESS}API LinkForCitizens initialized !"
     echo ""
-    echo -e "${TAG}${INFOS}Start working at --> ${NC}http://linkforcitizens.local:3000"
+    echo -e "${TAG}${INFOS}Start working at --> ${NC}http://linksforcitizens.local:3000"
     echo ""
     return
 }
