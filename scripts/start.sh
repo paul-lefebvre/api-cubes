@@ -20,6 +20,7 @@ Help() {
     echo -e "               ${INFOS}[--build | -build | -b]     ${NC}Créé et démarre l'ensemble des services de l'API"
     echo -e "               ${INFOS}[--help | -help | -h]       ${NC}Affiche cette aide"
     echo ""
+    return
 }
 #===========================
 # BUILD & CREATE CONTAINERS
@@ -38,6 +39,7 @@ Build() {
     echo ""
     echo -e "${TAG}${SUCCESS}Build success !"
     echo ""
+    return
 }
 #===========================
 #   START API CONTAINERS
@@ -56,6 +58,7 @@ Start()  {
     echo ""
     echo -e "${TAG}${INFOS}Start working at --> ${NC}http://linkforcitizens.local:3000"
     echo ""
+    return
 }
 #===========================
 #       HANDLE ARGS
