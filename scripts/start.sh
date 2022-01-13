@@ -12,32 +12,32 @@ TAG='\033[0m[\033[0;36mLFC-API\033[0m] '
 #       COMMAND HELP
 #===========================
 Help() {
-    echo
+    echo ""
     echo -e "${TAG}${INFOS}AIDE: ${NC}Script pour build/start l'API LFC"
-    echo
+    echo ""
     echo -e "          ${INFOS}SYNTAXE:${NC} start [ --build | --help ]"
     echo -e "          ${INFOS}ARGUMENTS:"
     echo -e "               ${INFOS}[--build | -build | -b]     ${NC}Créé et démarre l'ensemble des services de l'API"
     echo -e "               ${INFOS}[--help | -help | -h]       ${NC}Affiche cette aide"
-    echo
+    echo ""
 }
 #===========================
 # BUILD & CREATE CONTAINERS
 #===========================
 Build() {
-    echo
+    echo ""
     echo -e "${TAG}${INFOS}Build in progress...${NC}"
-    echo
+    echo ""
     sudo docker stop app-cubes > /dev/null 2>&1
     sudo docker rm app-cubes > /dev/null 2>&1
     sudo docker-compose down --remove-orphans > /dev/null 2>&1
-    echo
+    echo ""
     echo -e "${TAG}${SUCCESS}API's Containers removed !${NC}"
-    echo
+    echo ""
     sudo docker-compose up --build -d
-    echo
+    echo ""
     echo -e "${TAG}${SUCCESS}Build success !"
-    echo
+    echo ""
 }
 #===========================
 #   START API CONTAINERS
@@ -45,17 +45,17 @@ Build() {
 Start()  {
     sudo docker restart postgres > /dev/null 2>&1
     echo -e "${TAG}${SUCCESS}postgres initialized !"
-    echo
+    echo ""
     sudo docker restart pgadmin > /dev/null 2>&1
     echo -e "${TAG}${SUCCESS}pgadmin initialized !"
-    echo
+    echo ""
     sudo docker stop app-cubes > /dev/null 2>&1
     sudo docker rm app-cubes > /dev/null 2>&1
     sudo docker run -v `pwd`:/usr/app -p 3000:3000 -d --name app-cubes api_app-cubes > /dev/null 2>&1
     echo -e "${TAG}${SUCCESS}API LinkForCitizens initialized !"
-    echo
+    echo ""
     echo -e "${TAG}${INFOS}Start working at --> ${NC}http://linkforcitizens.local:3000"
-    echo
+    echo ""
 }
 #===========================
 #       HANDLE ARGS
