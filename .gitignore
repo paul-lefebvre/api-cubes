@@ -33,3 +33,4 @@ benchmarks/graphs
 
 # project
 .env
+config

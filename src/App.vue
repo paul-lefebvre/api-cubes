@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import User from './api/models/User';
+
+console.log('USER MODEL : ', User);
 
 export default {
   name: 'App',

@@ -26,14 +26,14 @@ services:
     ports:
       - "${APP_PORT}:${APP_PORT}"
     volumes:
-      - .:/app
+      - ${VOLUME_PATH_APP}
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:6.0
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: lefebvre@antadis.com
-      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+      PGADMIN_DEFAULT_EMAIL: ${PGA_MAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD}
       PGADMIN_LISTEN_PORT: ${PGA_LISTEN_PORT}
     ports:
       - "${PGA_PORT}:${PGA_LISTEN_PORT}"
