@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 
@@ -7,7 +9,23 @@ var logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
+const { Sequelize } = require('sequelize');
+
 var app = express();
+
+// SETUP DB
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dialect: process.env.DB_CONNECTION,
+  schema: 'lfc'
+});
+
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+}).catch((error) => {
+    console.error('Unable to connect to the database:', error);
+});
 
 // SETUP APP
 app.use(logger('dev'));
@@ -15,10 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// IMPORT ASSETS
 app.use('/dist', express.static('./dist'));
 app.use('/public', express.static(__dirname + '/public'));
-
-
 
 // OPTIONS
 const vueOptions = {
@@ -51,11 +68,12 @@ app.use(
 // USE INDEX.HTML OF PUBLIC FOLDER TO USE VUE BUNDLE
 app.get('/', (req, resp) => {
   resp.sendFile('index.html', vueOptions, (err) => {
-        if (!err)
-            console.log('Welcome on BACK OFFICE');
-        else
-            console.log('Failed to serve VUE');
-    })
+    if (!err) {
+      console.log('Welcome on BACK OFFICE');
+    }else {
+      console.log('Failed to serve VUE');
+    }
+  })
 });
 
 

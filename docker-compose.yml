@@ -5,6 +5,7 @@ services:
     image: postgres:14.1-alpine
     restart: always
     environment:
+      POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
@@ -20,14 +21,8 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: ${DB_CONNECTION}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
       NODE_ENV: development
       PORT: ${APP_PORT}
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${APP_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
     ports:
       - "${APP_PORT}:${APP_PORT}"
     volumes:

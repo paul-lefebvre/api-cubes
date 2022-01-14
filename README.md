@@ -30,7 +30,7 @@ APP_URL=http://linksforcitizens.local
 
 # Postgres Database
 DB_CONNECTION=postgres
-DB_HOST=postgres
+DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=lfc_db
 DB_USER=postgres
@@ -46,32 +46,24 @@ PGA_LISTEN_PORT=80
 ### Commandes d'Installation et Prise en Main (sous Linux)
 
 ```shell
-# Récupérer le projet depuis github
-git clone git@github.com:paul-lefebvre/api-cubes.git .
+# Créer, build et lance le projet
+sudo bash ./scripts/start.sh -b
 
-# Installe et build les containers du projet
-sudo docker-compose up --build -d
-
-# Démarre le docker (-d = pour se détacher)
-sudo docker-compose up [-d]
-
-# Stop le docker
-sudo docker-compose stop
-
-# Information sur les containers
-sudo docker ps
-
-# Kill un container
-sudo docker-compose kill {CONTAINER_ID}
-
-# Log un container
-sudo docker logs {CONTAINER_ID}
+# (re-)démarre le projet
+sudo bash ./scripts/start.sh
 ```
 
 ### Base de données
 
-Vous devez tout d'abord configurer le type de connexion à votre base de données, ainsi que les identifiants dans le
-fichier `.env`.
+Vous devez tout d'abord créer et configurer le fichier `.env` à la racine du projet.
+
+```shell
+# Installe SEQUELIZE (Client)
+npm install --save-dev sequelize-cli -g
+
+# Documentation SEQUELIZE
+https://github.com/sequelize/cli
+```
 
 ## Liens Pratiques
 
@@ -99,6 +91,33 @@ npm build
 
 # Démarre le serveur Express sous nodemon
 npm start
+
+# Récupérer le projet depuis github
+git clone git@github.com:paul-lefebvre/api-cubes.git .
+
+# Installe et build les containers du projet
+sudo docker-compose up --build -d
+
+# Démarre le docker (-d = pour se détacher)
+sudo docker-compose up [-d]
+
+# Stop le docker
+sudo docker-compose stop
+
+# Information sur les containers
+sudo docker ps
+
+# Kill un container
+sudo docker-compose kill {CONTAINER_ID}
+
+# Stop un container
+sudo docker stop {CONTAINER_NAME}
+
+# Supprime un container
+sudo docker rm {CONTAINER_NAME}
+
+# Log un container
+sudo docker logs {CONTAINER_ID}
 ```
 
 ## Informations Diverses

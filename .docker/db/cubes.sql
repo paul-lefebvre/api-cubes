@@ -3,13 +3,7 @@
 /* Date de cr�ation :  16/12/2021 19:03:42                      */
 /*==============================================================*/
 
-CREATE SCHEMA lfc_db;
-
-CREATE USER docker WITH ENCRYPTED PASSWORD 'docker' LOGIN SUPERUSER INHERIT NOREPLICATION;
-
-GRANT ALL PRIVILEGES ON SCHEMA lfc_db TO docker;
-
-ALTER SCHEMA lfc_db OWNER TO docker;
+CREATE SCHEMA lfc;
 
 drop index IF EXISTS ADHERER2_FK;
 
@@ -130,7 +124,7 @@ drop table IF EXISTS UTILS;
 /*==============================================================*/
 /* Table : ADHERER                                              */
 /*==============================================================*/
-create table lfc_db.ADHERER (
+create table lfc.ADHERER (
 GRP_ID               INT4                 not null,
 USR_ID               INT4                 not null,
 constraint PK_ADHERER primary key (GRP_ID, USR_ID)
@@ -139,7 +133,7 @@ constraint PK_ADHERER primary key (GRP_ID, USR_ID)
 /*==============================================================*/
 /* Index : ADHERER_PK                                           */
 /*==============================================================*/
-create unique index ADHERER_PK on lfc_db.ADHERER (
+create unique index ADHERER_PK on lfc.ADHERER (
 GRP_ID,
 USR_ID
 );
@@ -147,21 +141,21 @@ USR_ID
 /*==============================================================*/
 /* Index : ADHERER_FK                                           */
 /*==============================================================*/
-create  index ADHERER_FK on lfc_db.ADHERER (
+create  index ADHERER_FK on lfc.ADHERER (
 GRP_ID
 );
 
 /*==============================================================*/
 /* Index : ADHERER2_FK                                          */
 /*==============================================================*/
-create  index ADHERER2_FK on lfc_db.ADHERER (
+create  index ADHERER2_FK on lfc.ADHERER (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : CATEGORIES                                           */
 /*==============================================================*/
-create table lfc_db.CATEGORIES (
+create table lfc.CATEGORIES (
 CAT_ID               SERIAL               not null,
 TITLE                VARCHAR(300)         null,
 DESCRIPTION          VARCHAR(999)         null,
@@ -174,14 +168,14 @@ constraint PK_CATEGORIES primary key (CAT_ID)
 /*==============================================================*/
 /* Index : CATEGORIES_PK                                        */
 /*==============================================================*/
-create unique index CATEGORIES_PK on lfc_db.CATEGORIES (
+create unique index CATEGORIES_PK on lfc.CATEGORIES (
 CAT_ID
 );
 
 /*==============================================================*/
 /* Table : COMMENTS                                             */
 /*==============================================================*/
-create table lfc_db.COMMENTS (
+create table lfc.COMMENTS (
 COM_ID               SERIAL               not null,
 RES_ID               INT4                 not null,
 ANSWERS              VARCHAR(999)         null,
@@ -196,21 +190,21 @@ constraint PK_COMMENTS primary key (COM_ID)
 /*==============================================================*/
 /* Index : COMMENTS_PK                                          */
 /*==============================================================*/
-create unique index COMMENTS_PK on lfc_db.COMMENTS (
+create unique index COMMENTS_PK on lfc.COMMENTS (
 COM_ID
 );
 
 /*==============================================================*/
 /* Index : COMMENTER_FK                                         */
 /*==============================================================*/
-create  index COMMENTER_FK on lfc_db.COMMENTS (
+create  index COMMENTER_FK on lfc.COMMENTS (
 RES_ID
 );
 
 /*==============================================================*/
 /* Table : CONVERSATIONS                                        */
 /*==============================================================*/
-create table lfc_db.CONVERSATIONS (
+create table lfc.CONVERSATIONS (
 CVS_ID               SERIAL               not null,
 IS_MUTE              INT4                 null,
 LAST_MSG             VARCHAR(50)          null,
@@ -226,14 +220,14 @@ constraint PK_CONVERSATIONS primary key (CVS_ID)
 /*==============================================================*/
 /* Index : CONVERSATIONS_PK                                     */
 /*==============================================================*/
-create unique index CONVERSATIONS_PK on lfc_db.CONVERSATIONS (
+create unique index CONVERSATIONS_PK on lfc.CONVERSATIONS (
 CVS_ID
 );
 
 /*==============================================================*/
 /* Table : DISCUTER                                             */
 /*==============================================================*/
-create table lfc_db.DISCUTER (
+create table lfc.DISCUTER (
 CVS_ID               INT4                 not null,
 USR_ID               INT4                 not null,
 constraint PK_DISCUTER primary key (CVS_ID, USR_ID)
@@ -242,7 +236,7 @@ constraint PK_DISCUTER primary key (CVS_ID, USR_ID)
 /*==============================================================*/
 /* Index : DISCUTER_PK                                          */
 /*==============================================================*/
-create unique index DISCUTER_PK on lfc_db.DISCUTER (
+create unique index DISCUTER_PK on lfc.DISCUTER (
 CVS_ID,
 USR_ID
 );
@@ -250,21 +244,21 @@ USR_ID
 /*==============================================================*/
 /* Index : DISCUTER_FK                                          */
 /*==============================================================*/
-create  index DISCUTER_FK on lfc_db.DISCUTER (
+create  index DISCUTER_FK on lfc.DISCUTER (
 CVS_ID
 );
 
 /*==============================================================*/
 /* Index : DISCUTER2_FK                                         */
 /*==============================================================*/
-create  index DISCUTER2_FK on lfc_db.DISCUTER (
+create  index DISCUTER2_FK on lfc.DISCUTER (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : EVENTS                                               */
 /*==============================================================*/
-create table lfc_db.EVENTS (
+create table lfc.EVENTS (
 EVT_ID               SERIAL               not null,
 OWNER                INT4                 null,
 TITLE                VARCHAR(300)         null,
@@ -283,14 +277,14 @@ constraint PK_EVENTS primary key (EVT_ID)
 /*==============================================================*/
 /* Index : EVENTS_PK                                            */
 /*==============================================================*/
-create unique index EVENTS_PK on lfc_db.EVENTS (
+create unique index EVENTS_PK on lfc.EVENTS (
 EVT_ID
 );
 
 /*==============================================================*/
 /* Table : GROUPS                                               */
 /*==============================================================*/
-create table lfc_db.GROUPS (
+create table lfc.GROUPS (
 GRP_ID               SERIAL               not null,
 OWNER                INT4                 null,
 NAME                 VARCHAR(300)         null,
@@ -306,14 +300,14 @@ constraint PK_GROUPS primary key (GRP_ID)
 /*==============================================================*/
 /* Index : GROUPS_PK                                            */
 /*==============================================================*/
-create unique index GROUPS_PK on lfc_db.GROUPS (
+create unique index GROUPS_PK on lfc.GROUPS (
 GRP_ID
 );
 
 /*==============================================================*/
 /* Table : LIER                                                 */
 /*==============================================================*/
-create table lfc_db.LIER (
+create table lfc.LIER (
 USR_ID               INT4                 not null,
 REL_ID               INT4                 not null,
 constraint PK_LIER primary key (USR_ID, REL_ID)
@@ -322,7 +316,7 @@ constraint PK_LIER primary key (USR_ID, REL_ID)
 /*==============================================================*/
 /* Index : LIER_PK                                              */
 /*==============================================================*/
-create unique index LIER_PK on lfc_db.LIER (
+create unique index LIER_PK on lfc.LIER (
 USR_ID,
 REL_ID
 );
@@ -330,21 +324,21 @@ REL_ID
 /*==============================================================*/
 /* Index : LIER_FK                                              */
 /*==============================================================*/
-create  index LIER_FK on lfc_db.LIER (
+create  index LIER_FK on lfc.LIER (
 USR_ID
 );
 
 /*==============================================================*/
 /* Index : LIER2_FK                                             */
 /*==============================================================*/
-create  index LIER2_FK on lfc_db.LIER (
+create  index LIER2_FK on lfc.LIER (
 REL_ID
 );
 
 /*==============================================================*/
 /* Table : LIKES                                                */
 /*==============================================================*/
-create table lfc_db.LIKES (
+create table lfc.LIKES (
 LIK_ID               SERIAL               not null,
 USR_ID               INT4                 not null,
 ENTITY_ID            INT4                 null,
@@ -359,21 +353,21 @@ constraint PK_LIKES primary key (LIK_ID)
 /*==============================================================*/
 /* Index : LIKES_PK                                             */
 /*==============================================================*/
-create unique index LIKES_PK on lfc_db.LIKES (
+create unique index LIKES_PK on lfc.LIKES (
 LIK_ID
 );
 
 /*==============================================================*/
 /* Index : LIKER_FK                                             */
 /*==============================================================*/
-create  index LIKER_FK on lfc_db.LIKES (
+create  index LIKER_FK on lfc.LIKES (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : MEDIAS                                               */
 /*==============================================================*/
-create table lfc_db.MEDIAS (
+create table lfc.MEDIAS (
 MED_ID               SERIAL               not null,
 RES_ID               INT4                 not null,
 PATH                 VARCHAR(999)         null,
@@ -387,21 +381,21 @@ constraint PK_MEDIAS primary key (MED_ID)
 /*==============================================================*/
 /* Index : MEDIAS_PK                                            */
 /*==============================================================*/
-create unique index MEDIAS_PK on lfc_db.MEDIAS (
+create unique index MEDIAS_PK on lfc.MEDIAS (
 MED_ID
 );
 
 /*==============================================================*/
 /* Index : UPLOADER_FK                                          */
 /*==============================================================*/
-create  index UPLOADER_FK on lfc_db.MEDIAS (
+create  index UPLOADER_FK on lfc.MEDIAS (
 RES_ID
 );
 
 /*==============================================================*/
 /* Table : NOTIFICATIONS                                        */
 /*==============================================================*/
-create table lfc_db.NOTIFICATIONS (
+create table lfc.NOTIFICATIONS (
 NOT_ID               SERIAL               not null,
 ENTITY_ID            INT4                 null,
 ANSWERS              VARCHAR(999)         null,
@@ -422,14 +416,14 @@ constraint PK_NOTIFICATIONS primary key (NOT_ID)
 /*==============================================================*/
 /* Index : NOTIFICATIONS_PK                                     */
 /*==============================================================*/
-create unique index NOTIFICATIONS_PK on lfc_db.NOTIFICATIONS (
+create unique index NOTIFICATIONS_PK on lfc.NOTIFICATIONS (
 NOT_ID
 );
 
 /*==============================================================*/
 /* Table : NOTIFIER                                             */
 /*==============================================================*/
-create table lfc_db.NOTIFIER (
+create table lfc.NOTIFIER (
 NOT_ID               INT4                 not null,
 USR_ID               INT4                 not null,
 constraint PK_NOTIFIER primary key (NOT_ID, USR_ID)
@@ -438,7 +432,7 @@ constraint PK_NOTIFIER primary key (NOT_ID, USR_ID)
 /*==============================================================*/
 /* Index : NOTIFIER_PK                                          */
 /*==============================================================*/
-create unique index NOTIFIER_PK on lfc_db.NOTIFIER (
+create unique index NOTIFIER_PK on lfc.NOTIFIER (
 NOT_ID,
 USR_ID
 );
@@ -446,21 +440,21 @@ USR_ID
 /*==============================================================*/
 /* Index : NOTIFIER_FK                                          */
 /*==============================================================*/
-create  index NOTIFIER_FK on lfc_db.NOTIFIER (
+create  index NOTIFIER_FK on lfc.NOTIFIER (
 NOT_ID
 );
 
 /*==============================================================*/
 /* Index : NOTIFIER2_FK                                         */
 /*==============================================================*/
-create  index NOTIFIER2_FK on lfc_db.NOTIFIER (
+create  index NOTIFIER2_FK on lfc.NOTIFIER (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : PARTICIPER                                           */
 /*==============================================================*/
-create table lfc_db.PARTICIPER (
+create table lfc.PARTICIPER (
 USR_ID               INT4                 not null,
 EVT_ID               INT4                 not null,
 constraint PK_PARTICIPER primary key (USR_ID, EVT_ID)
@@ -469,7 +463,7 @@ constraint PK_PARTICIPER primary key (USR_ID, EVT_ID)
 /*==============================================================*/
 /* Index : PARTICIPER_PK                                        */
 /*==============================================================*/
-create unique index PARTICIPER_PK on lfc_db.PARTICIPER (
+create unique index PARTICIPER_PK on lfc.PARTICIPER (
 USR_ID,
 EVT_ID
 );
@@ -477,21 +471,21 @@ EVT_ID
 /*==============================================================*/
 /* Index : PARTICIPER_FK                                        */
 /*==============================================================*/
-create  index PARTICIPER_FK on lfc_db.PARTICIPER (
+create  index PARTICIPER_FK on lfc.PARTICIPER (
 USR_ID
 );
 
 /*==============================================================*/
 /* Index : PARTICIPER2_FK                                       */
 /*==============================================================*/
-create  index PARTICIPER2_FK on lfc_db.PARTICIPER (
+create  index PARTICIPER2_FK on lfc.PARTICIPER (
 EVT_ID
 );
 
 /*==============================================================*/
 /* Table : RELATIONS                                            */
 /*==============================================================*/
-create table lfc_db.RELATIONS (
+create table lfc.RELATIONS (
 REL_ID               SERIAL               not null,
 TYPE                 VARCHAR(50)          null,
 CREATED_AT           DATE                 null,
@@ -501,14 +495,14 @@ constraint PK_RELATIONS primary key (REL_ID)
 /*==============================================================*/
 /* Index : RELATIONS_PK                                         */
 /*==============================================================*/
-create unique index RELATIONS_PK on lfc_db.RELATIONS (
+create unique index RELATIONS_PK on lfc.RELATIONS (
 REL_ID
 );
 
 /*==============================================================*/
 /* Table : RESPONSES                                            */
 /*==============================================================*/
-create table lfc_db.RESPONSES (
+create table lfc.RESPONSES (
 REP_ID               SERIAL               not null,
 SRV_ID               INT4                 not null,
 ANSWERS              VARCHAR(999)         null,
@@ -520,21 +514,21 @@ constraint PK_RESPONSES primary key (REP_ID)
 /*==============================================================*/
 /* Index : RESPONSES_PK                                         */
 /*==============================================================*/
-create unique index RESPONSES_PK on lfc_db.RESPONSES (
+create unique index RESPONSES_PK on lfc.RESPONSES (
 REP_ID
 );
 
 /*==============================================================*/
 /* Index : REPONDRE_FK                                          */
 /*==============================================================*/
-create  index REPONDRE_FK on lfc_db.RESPONSES (
+create  index REPONDRE_FK on lfc.RESPONSES (
 SRV_ID
 );
 
 /*==============================================================*/
 /* Table : RESSOURCES                                           */
 /*==============================================================*/
-create table lfc_db.RESSOURCES (
+create table lfc.RESSOURCES (
 RES_ID               SERIAL               not null,
 USR_ID               INT4                 not null,
 CAT_ID               INT4                 not null,
@@ -550,28 +544,28 @@ constraint PK_RESSOURCES primary key (RES_ID)
 /*==============================================================*/
 /* Index : RESSOURCES_PK                                        */
 /*==============================================================*/
-create unique index RESSOURCES_PK on lfc_db.RESSOURCES (
+create unique index RESSOURCES_PK on lfc.RESSOURCES (
 RES_ID
 );
 
 /*==============================================================*/
 /* Index : CATEGORISER_FK                                       */
 /*==============================================================*/
-create  index CATEGORISER_FK on lfc_db.RESSOURCES (
+create  index CATEGORISER_FK on lfc.RESSOURCES (
 CAT_ID
 );
 
 /*==============================================================*/
 /* Index : PUBLIER_FK                                           */
 /*==============================================================*/
-create  index PUBLIER_FK on lfc_db.RESSOURCES (
+create  index PUBLIER_FK on lfc.RESSOURCES (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : SIGNALEMENTS                                         */
 /*==============================================================*/
-create table lfc_db.SIGNALEMENTS (
+create table lfc.SIGNALEMENTS (
 SIG_ID               SERIAL               not null,
 USR_ID               INT4                 null,
 USR_SIGNALED_ID      INT4                 null,
@@ -586,21 +580,21 @@ constraint PK_SIGNALEMENTS primary key (SIG_ID)
 /*==============================================================*/
 /* Index : SIGNALEMENTS_PK                                      */
 /*==============================================================*/
-create unique index SIGNALEMENTS_PK on lfc_db.SIGNALEMENTS (
+create unique index SIGNALEMENTS_PK on lfc.SIGNALEMENTS (
 SIG_ID
 );
 
 /*==============================================================*/
 /* Index : SIGNALER_FK                                          */
 /*==============================================================*/
-create  index SIGNALER_FK on lfc_db.SIGNALEMENTS (
+create  index SIGNALER_FK on lfc.SIGNALEMENTS (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : SURVEYS                                              */
 /*==============================================================*/
-create table lfc_db.SURVEYS (
+create table lfc.SURVEYS (
 SRV_ID               SERIAL               not null,
 USR_ID               INT4                 not null,
 TITLE                VARCHAR(300)         null,
@@ -620,21 +614,21 @@ constraint PK_SURVEYS primary key (SRV_ID)
 /*==============================================================*/
 /* Index : SURVEYS_PK                                           */
 /*==============================================================*/
-create unique index SURVEYS_PK on lfc_db.SURVEYS (
+create unique index SURVEYS_PK on lfc.SURVEYS (
 SRV_ID
 );
 
 /*==============================================================*/
 /* Index : SOUMETTRE_FK                                         */
 /*==============================================================*/
-create  index SOUMETTRE_FK on lfc_db.SURVEYS (
+create  index SOUMETTRE_FK on lfc.SURVEYS (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : USERS                                                */
 /*==============================================================*/
-create table lfc_db.USERS (
+create table lfc.USERS (
 USR_ID               SERIAL               not null,
 PSEUDO               VARCHAR(50)          null,
 FIRSTNAME            VARCHAR(50)          null,
@@ -660,14 +654,14 @@ constraint PK_USERS primary key (USR_ID)
 /*==============================================================*/
 /* Index : USERS_PK                                             */
 /*==============================================================*/
-create unique index USERS_PK on lfc_db.USERS (
+create unique index USERS_PK on lfc.USERS (
 USR_ID
 );
 
 /*==============================================================*/
 /* Table : UTILS                                                */
 /*==============================================================*/
-create table lfc_db.UTILS (
+create table lfc.UTILS (
 UTL_ID               SERIAL               not null,
 VALUE                VARCHAR(999)         null,
 NUMBER               INT4                 null,
@@ -679,97 +673,97 @@ constraint PK_UTILS primary key (UTL_ID)
 /*==============================================================*/
 /* Index : UTILS_PK                                             */
 /*==============================================================*/
-create unique index UTILS_PK on lfc_db.UTILS (
+create unique index UTILS_PK on lfc.UTILS (
 UTL_ID
 );
 
-alter table lfc_db.ADHERER
+alter table lfc.ADHERER
    add constraint FK_ADHERER_ADHERER_GROUPS foreign key (GRP_ID)
-      references lfc_db.GROUPS (GRP_ID)
+      references lfc.GROUPS (GRP_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.ADHERER
+alter table lfc.ADHERER
    add constraint FK_ADHERER_ADHERER2_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.COMMENTS
+alter table lfc.COMMENTS
    add constraint FK_COMMENTS_COMMENTER_RESSOURC foreign key (RES_ID)
-      references lfc_db.RESSOURCES (RES_ID)
+      references lfc.RESSOURCES (RES_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.DISCUTER
+alter table lfc.DISCUTER
    add constraint FK_DISCUTER_DISCUTER_CONVERSA foreign key (CVS_ID)
-      references lfc_db.CONVERSATIONS (CVS_ID)
+      references lfc.CONVERSATIONS (CVS_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.DISCUTER
+alter table lfc.DISCUTER
    add constraint FK_DISCUTER_DISCUTER2_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.LIER
+alter table lfc.LIER
    add constraint FK_LIER_LIER_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.LIER
+alter table lfc.LIER
    add constraint FK_LIER_LIER2_RELATION foreign key (REL_ID)
-      references lfc_db.RELATIONS (REL_ID)
+      references lfc.RELATIONS (REL_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.LIKES
+alter table lfc.LIKES
    add constraint FK_LIKES_LIKER_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.MEDIAS
+alter table lfc.MEDIAS
    add constraint FK_MEDIAS_UPLOADER_RESSOURC foreign key (RES_ID)
-      references lfc_db.RESSOURCES (RES_ID)
+      references lfc.RESSOURCES (RES_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.NOTIFIER
+alter table lfc.NOTIFIER
    add constraint FK_NOTIFIER_NOTIFIER_NOTIFICA foreign key (NOT_ID)
-      references lfc_db.NOTIFICATIONS (NOT_ID)
+      references lfc.NOTIFICATIONS (NOT_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.NOTIFIER
+alter table lfc.NOTIFIER
    add constraint FK_NOTIFIER_NOTIFIER2_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.PARTICIPER
+alter table lfc.PARTICIPER
    add constraint FK_PARTICIP_PARTICIPE_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.PARTICIPER
+alter table lfc.PARTICIPER
    add constraint FK_PARTICIP_PARTICIPE_EVENTS foreign key (EVT_ID)
-      references lfc_db.EVENTS (EVT_ID)
+      references lfc.EVENTS (EVT_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.RESPONSES
+alter table lfc.RESPONSES
    add constraint FK_RESPONSE_REPONDRE_SURVEYS foreign key (SRV_ID)
-      references lfc_db.SURVEYS (SRV_ID)
+      references lfc.SURVEYS (SRV_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.RESSOURCES
+alter table lfc.RESSOURCES
    add constraint FK_RESSOURC_CATEGORIS_CATEGORI foreign key (CAT_ID)
-      references lfc_db.CATEGORIES (CAT_ID)
+      references lfc.CATEGORIES (CAT_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.RESSOURCES
+alter table lfc.RESSOURCES
    add constraint FK_RESSOURC_PUBLIER_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.SIGNALEMENTS
+alter table lfc.SIGNALEMENTS
    add constraint FK_SIGNALEM_SIGNALER_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc_db.SURVEYS
+alter table lfc.SURVEYS
    add constraint FK_SURVEYS_SOUMETTRE_USERS foreign key (USR_ID)
-      references lfc_db.USERS (USR_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
