@@ -28,6 +28,9 @@ APP_DEBUG=true
 APP_PORT=3000
 APP_URL=http://linksforcitizens.local
 
+# Docker
+VOLUME_PATH_APP=.:/app
+
 # Postgres Database
 DB_CONNECTION=postgres
 DB_HOST=localhost
