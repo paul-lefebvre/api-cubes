@@ -12,6 +12,7 @@ COPY package.json tsconfig.json swagger.json .eslintrc.js babel.config.js vue.co
 COPY src ./src
 COPY public ./public
 COPY bin ./bin
+COPY .env ./
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
