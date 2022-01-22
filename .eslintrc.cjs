@@ -16,5 +16,6 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "no-require-imports": 0
   },
 };

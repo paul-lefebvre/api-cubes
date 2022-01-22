@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-/* eslint-disable no-fallthrough */
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
+import app from '../app.js';
 var debug = require('debug')('api:server');
 var http = require('http');
 
@@ -13,7 +15,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-let portServer = normalizePort(process.env.PORT || '3000');
+let portServer = normalizePort(process.env.APP_PORT || '3000');
 app.set('port', portServer);
 
 /**
@@ -63,8 +65,10 @@ function onError(error) {
   switch (error.code) {
     case 'EACCES':
       process.exit(1);
+      break;
     case 'EADDRINUSE':
       process.exit(1);
+      break;
     default:
       throw error;
   }

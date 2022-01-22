@@ -1,21 +1,24 @@
+import { createRequire } from "module";
+import { fileURLToPath } from 'url';
+import path from 'path';
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 require('dotenv').config();
 
-var createError = require('http-errors');
-var express = require('express');
-
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import createError from 'http-errors';
+import express from 'express';
+import logger from 'morgan';
+import routes from './src/api/routes/index.js';
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-
-var app = express();
+const app = express();
 
 // SETUP APP
-app.use(logger('dev'));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(logger('dev'));
 
 // IMPORT ASSETS
 app.use('/dist', express.static('./dist'));
@@ -37,10 +40,8 @@ var swaggerOptions = {
   customCss: '.swagger-ui .topbar { display: none }',
 };
 
-// ROUTES API
-app.get('/api', (req, res) => {
-  res.json({message: 'Welcome to Server'});
-});
+//IMPORT ROUTES API
+routes(app);
 
 // SWAGGER UI FOR DOC API
 app.use(
@@ -60,9 +61,6 @@ app.get('/', (req, resp) => {
   })
 });
 
-
-
-
 // CATCH 404 ERRORS
 app.use(function(req, res, next) {
   next(createError(404));
@@ -79,4 +77,4 @@ app.use(function(err, req, res) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

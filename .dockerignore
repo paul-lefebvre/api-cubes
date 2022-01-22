@@ -1,6 +1,5 @@
 .git
 .gitignore
 .docker
-config
 dist/
 node_modules/
