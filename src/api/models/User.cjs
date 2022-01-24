@@ -12,14 +12,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
+    usr_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     pseudo: DataTypes.STRING,
     firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING
+    lastname: DataTypes.STRING,
+    tel: DataTypes.STRING,
+    mail: DataTypes.STRING,
+    password: DataTypes.STRING,
+    roles: DataTypes.TEXT,
+    status: DataTypes.INTEGER,
+    last_con: DataTypes.DATE,
+    reset_code: DataTypes.STRING, 
+    birth_date: DataTypes.DATE,
+    gender: DataTypes.INTEGER,
+    is_online: DataTypes.INTEGER,
+    actual_lat: DataTypes.DECIMAL,
+    actual_long: DataTypes.DECIMAL,
+    bio: DataTypes.STRING,
+    avatar_img: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
     tableName: 'users',
+    createdAt: 'created_at',
+    updatedAt: false,
     freezeTableName: true,
   });
+  //User.removeAttribute('id');
   return User;
 };
