@@ -42,6 +42,5 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: false,
     freezeTableName: true,
   });
-  //User.removeAttribute('id');
   return User;
 };
