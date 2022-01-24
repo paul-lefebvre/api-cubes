@@ -31,6 +31,7 @@
     "pg-hstore": "^2.3.4",
     "pug": "^2.0.4",
     "sequelize": "^6.13.0",
+    "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.2.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"

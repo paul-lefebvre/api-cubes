@@ -5,20 +5,22 @@ const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 require('dotenv').config();
-
 import createError from 'http-errors';
 import express from 'express';
+
 import logger from 'morgan';
 import routes from './src/api/routes/index.js';
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJson = require('./swagger.json');
 const app = express();
 
 // SETUP APP
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger('dev'));
+
 
 // IMPORT ASSETS
 app.use('/dist', express.static('./dist'));
@@ -36,9 +38,10 @@ const vueOptions = {
 
 var swaggerOptions = {
   customSiteTitle: "CUBES",
-  customfavIcon: "public/favicon.ico",
+  customfavIcon: "/public/favicon.ico",
   customCss: '.swagger-ui .topbar { display: none }',
 };
+const SwaggerDoc = swaggerJsdoc(swaggerJson);
 
 //IMPORT ROUTES API
 routes(app);
@@ -47,7 +50,7 @@ routes(app);
 app.use(
   '/doc',
   swaggerUi.serve, 
-  swaggerUi.setup(swaggerDocument, swaggerOptions)
+  swaggerUi.setup(SwaggerDoc, swaggerOptions)
 );
 
 // USE INDEX.HTML OF PUBLIC FOLDER TO USE VUE BUNDLE

@@ -1,19 +1,25 @@
 {
+  "definition": {
     "openapi": "3.0.0",
     "info": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "title": "API REST - LFC",
       "description": "Documentation de l'API du projet Link For Citizens"
     },
-    "host": "0.0.0.0:3000",
-    "basePath": "/doc",
-    "tags": [
-      {
-        "name": "Users",
-        "description": "API for users in the system"
-      }
-    ],
-    "schemes": ["http"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"]
-  }
+    "license": {
+      "name": "MIT",
+      "url": "https://spdx.org/licenses/MIT.html"
+    },
+    "contact": {
+      "name": "Links For Citizens",
+      "url": "https://linksforcitizens.local:3000",
+      "email": "linksforcitizens@contact.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://linksforcitizens:3000/"
+    }
+  ],
+  "apis": ["./src/api/routes/*.js"]
+}
