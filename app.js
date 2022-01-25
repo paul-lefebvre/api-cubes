@@ -39,7 +39,7 @@ const vueOptions = {
 var swaggerOptions = {
   customSiteTitle: "CUBES",
   customfavIcon: "/public/favicon.ico",
-  customCss: '.swagger-ui .topbar { display: none }',
+  customCss: '.swagger-ui .topbar .link img { content:url("/public/favicon.ico");  height: 90px; width: 90px; }',
 };
 const SwaggerDoc = swaggerJsdoc(swaggerJson);
 

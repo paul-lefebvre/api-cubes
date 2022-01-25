@@ -2,24 +2,24 @@
   "definition": {
     "openapi": "3.0.0",
     "info": {
-      "version": "1.0.2",
       "title": "API REST - LFC",
-      "description": "Documentation de l'API du projet Link For Citizens"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://spdx.org/licenses/MIT.html"
-    },
-    "contact": {
-      "name": "Links For Citizens",
-      "url": "https://linksforcitizens.local:3000",
-      "email": "linksforcitizens@contact.com"
+      "version": "v1",
+      "description": "Documentation de l'API du projet Links For Citizens"
     }
   },
-  "servers": [
-    {
-      "url": "http://linksforcitizens:3000/"
-    }
-  ],
-  "apis": ["./src/api/routes/*.js"]
+  "apis": ["./src/api/routes/*.js"],
+   "components": {
+      "securitySchemes": {
+        "jwt": {
+          "type": "http",
+          "scheme": "bearer",
+          "in": "header",
+          "bearerFormat": "JWT"
+        }
+      }
+    },
+    "security": [{
+      "jwt": []
+    }],
+  "swagger": "2.0"
 }
