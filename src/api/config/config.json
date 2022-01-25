@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "lfc_db",
+    "host": "172.28.0.2",
+    "port": "5432",
+    "dialect": "postgres",
+    "schema": "lfc"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "lfc_db",
+    "host": "linksforcitizens.local",
+    "port": "5432",
+    "dialect": "postgres",
+    "schema": "lfc"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "lfc_db",
+    "host": "linksforcitizens.local",
+    "port": "5432",
+    "dialect": "postgres",
+    "schema": "lfc"
+  }
+}
