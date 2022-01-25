@@ -1,26 +1,26 @@
 import model from '../../models/index.js';
-const { User } = model;
+const { Like } = model;
 
 export default async function (req, res) {
   const id = req.params.id;
 
-  User.update(req.body, {
-    where: { usr_id: id }
+  Like.update(req.body, {
+    where: { lik_id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "User was updated successfully."
+          message: "Like was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+          message: `Cannot update Like with id=${id}. Maybe Like was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-          message: "Error updating User with id=" + id,
+          message: "Error updating Like with id=" + id,
           error: err,
       });
     });
