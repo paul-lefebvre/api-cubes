@@ -33,3 +33,6 @@ benchmarks/graphs
 
 # project
 .env
+
+# intelij
+.idea
