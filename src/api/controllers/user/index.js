@@ -3,6 +3,7 @@ import update from './update.js';
 import deleteOne from './deleteOne.js';
 import findOne from './findOne.js';
 import findAll from './findAll.js';
+import login from './login.js';
 
 // IMPORT/EXPORT CUSTOM FCT HERE
 
@@ -12,6 +13,7 @@ const controller = {
   deleteOne,
   findOne,
   findAll,
+  login,
 }
 
 export default controller;

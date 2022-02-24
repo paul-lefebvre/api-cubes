@@ -73,6 +73,8 @@ export default (app) => {
      */
     router.post("/", UserController.create);
 
+    router.post("/login", UserController.login);
+
     /**
      * @swagger
      *  /api/users/{id}:
