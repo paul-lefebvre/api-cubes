@@ -16,6 +16,7 @@ export default async function (req, res) {
     }
     return res
       .status(201)
+      .json({ user: userWithMail })
       .send({ message: "connection réussie!", user: userWithMail });
   } catch (e) {
     console.log(e);
