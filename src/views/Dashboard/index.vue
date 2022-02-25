@@ -1,20 +1,20 @@
 <template>
   <div class="dashboard">
-    <Sidebar/>
+    <Sidebar />
+
     <div class="content">
-      <router-view/>
+      <router-view />
+      Bienvenue sur l'espace d'administration
     </div>
-
   </div>
-
 </template>
 
 <script>
 import Sidebar from "@/components/SideBar/Sidebar.vue";
 export default {
   name: "dashboard",
-  components: {Sidebar}
-}
+  components: { Sidebar },
+};
 </script>
 
 <style scoped src="./style.css"></style>

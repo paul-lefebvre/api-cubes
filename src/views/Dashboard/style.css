@@ -1,13 +1,14 @@
-.dashboard{
-    background-color: #673ab7;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    height: 100vh;
-    width: 100vw;
+.dashboard {
+  background-color: #0e3d8b;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  height: 100vh;
+  width: 100vw;
 }
 
-.content{
-    background-color: white;
-    border-radius: 20px;
-    margin: 6px 6px 6px 0px;
+.content {
+  background-color: #efeeee;
+  border-radius: 3% 20% 5% 5%;
+  margin: 6px 6px 6px 0px;
+  padding: 2% 0 0 3%;
 }
