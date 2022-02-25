@@ -14,7 +14,9 @@ export default async function (req, res) {
     if (userWithMail.password !== password) {
       return res.status(501).send({ message: "mot de passe incorrect" });
     }
-    return res.status(201).send({ message: "connection réussie!" });
+    return res
+      .status(201)
+      .send({ message: "connection réussie!", user: userWithMail });
   } catch (e) {
     console.log(e);
     return res.status(404).send({
