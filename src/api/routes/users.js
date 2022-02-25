@@ -10,8 +10,8 @@ var router = express.Router();
 */
 export default (app) => {
 
-    
-    /** 
+
+    /**
      * @swagger
      *  /api/users/:
      *      get:
@@ -23,8 +23,8 @@ export default (app) => {
      *              description: Successfully returned all user
      *          '500':
      *              description: Failed to query for users
-     * 
-    */ 
+     *
+    */
     router.get("/", UserController.findAll);
 
     /**
@@ -72,6 +72,30 @@ export default (app) => {
      *              description: Bad request
      */
     router.post("/", UserController.create);
+
+
+    /**
+     * @swagger
+     * /api/users
+     *      post
+     *          tags:
+     *          summary: Use to login acount
+     *          descritpion : Use to login acount
+     *      parametres:
+     *          -name: Id
+     *          in: body
+     *          description: ID of the user
+     *          required: true
+     *          schema:
+     *              type: integer
+     *              format: integer
+     *      responses:
+     *          '200':
+     *              description: Successfully retrieve the user
+     *          '500':
+     *              description: Bad request
+     */
+    router.post("/login", UserController.logIn);
 
     /**
      * @swagger
@@ -122,7 +146,7 @@ export default (app) => {
     app.use('/api/users', router);
 }
 
-/**   
+/**
  * @swagger
  *   components:
  *       schemas:
@@ -150,5 +174,5 @@ export default (app) => {
  *                       pseudo: test76
  *                       mail: test@test.com
  *                       createdAt: 2022-01-24
- * 
+ *
  */
