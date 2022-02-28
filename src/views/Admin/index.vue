@@ -2,6 +2,10 @@
   <div class="admin">
     <div class="content">
       <p>
+        <input v-text="pseudo" />
+        <input v-text="firstname" />
+        <input v-text="lastname" />
+
         <!-- ADMIN <br />
         - Gestion Super Administrateurs :
         <br /><br />
