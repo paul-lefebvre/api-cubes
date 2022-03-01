@@ -12,7 +12,6 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 async function getUsers() {
   try {
@@ -38,9 +37,7 @@ async function getUsers() {
 export default {
   name: "HomePage",
   props: {},
-  components: {
-    HelloWorld,
-  },
+  components: {},
 
   data() {
     return {

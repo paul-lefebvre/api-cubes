@@ -1,8 +1,7 @@
 <template>
   <div class="admin">
     <div class="content">
-      <p>
-        <!-- ADMIN <br />
+      <!-- ADMIN <br />
         - Gestion Super Administrateurs :
         <br /><br />
         * Creation Administrateurs
@@ -17,30 +16,48 @@
         * Creation Citoyen <br />
         * Creation Désactivation / Activation compte citoyen <br />
         - Gestion des commentaires -->
-        <button>Créer un compte</button>
 
-        <button v-for="role in roles" :key="role.id">
-          {{ role.role }} <br />
-
-          <!--v if avec les différents rôle, à récupérer dans la base -->
-          <!--v if avec les différents rôle, à récupérer dans la base selon le rôle du compte -->
-        </button>
+      <p v-for="user in users" v-bind:key="user.id">
+        Nom : {{ user.firstname }} <br />
+        Prenom : {{ user.lastname }} <br />
+        Role : {{ user.role }} <br />
       </p>
+
+      <!--v if avec les différents rôle, à récupérer dans la base -->
+      <!--v if avec les différents rôle, à récupérer dans la base selon le rôle du compte -->
     </div>
   </div>
 </template>
 
 <script>
+async function getUsers() {
+  try {
+    let users = await fetch("/api/users/", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        return response;
+      });
+
+    console.log("RESPONSE : ", users);
+    return users;
+  } catch (err) {
+    console.log(err);
+  }
+}
 export default {
   data() {
     return {
-      roles: [
-        { id: 0, role: "Super Administrateur" },
-        { id: 1, role: "Administrateur" },
-        { id: 2, role: "Moderateur" },
-        { id: 3, role: "Citoyen" },
-      ],
+      users: [],
     };
+  },
+  async mounted() {
+    this.users = await getUsers();
   },
 };
 </script>
