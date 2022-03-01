@@ -16,6 +16,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerJson = require("./swagger.json");
 const app = express();
+const jwt = require('jsonwebtoken');
 
 // SETUP APP
 app.use(cors());

@@ -1,5 +1,6 @@
 import model from "../../models/index.js";
 import { Op } from "sequelize";
+import jwt from "jsonwebtoken";
 
 const { User } = model;
 
@@ -14,9 +15,12 @@ export default async function (req, res) {
     if (userWithMail.password !== password) {
       return res.status(501).send({ message: "mot de passe incorrect" });
     }
+
+    const token = jwt.sign({id: userWithMail.usr_id},process.env.JWT_TOKEN_SECRET, { expiresIn: '3600s'})
+
     return res
       .status(201)
-      .json({ user: userWithMail })
+      .json({ acces_token: token })
       .send({ message: "connection réussie!", user: userWithMail });
   } catch (e) {
     console.log(e);
