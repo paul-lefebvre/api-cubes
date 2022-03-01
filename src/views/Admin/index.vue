@@ -2,10 +2,6 @@
   <div class="admin">
     <div class="content">
       <p>
-        <input v-text="pseudo" />
-        <input v-text="firstname" />
-        <input v-text="lastname" />
-
         <!-- ADMIN <br />
         - Gestion Super Administrateurs :
         <br /><br />
@@ -21,13 +17,32 @@
         * Creation Citoyen <br />
         * Creation Désactivation / Activation compte citoyen <br />
         - Gestion des commentaires -->
+        <button>Créer un compte</button>
+
+        <button v-for="role in roles" :key="role.id">
+          {{ role.role }} <br />
+
+          <!--v if avec les différents rôle, à récupérer dans la base -->
+          <!--v if avec les différents rôle, à récupérer dans la base selon le rôle du compte -->
+        </button>
       </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      roles: [
+        { id: 0, role: "Super Administrateur" },
+        { id: 1, role: "Administrateur" },
+        { id: 2, role: "Moderateur" },
+        { id: 3, role: "Citoyen" },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped src="./style.css"></style>
