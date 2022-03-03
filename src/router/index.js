@@ -33,11 +33,10 @@ const routes = [
         path: "/profile",
         component: () => import("../views/Profile"),
       },
-      //   },
-      //   {
-      //     path: "/userlist",
-      //     component: () => import("../views/AdminUser/UserList"),
-      //   },
+      {
+        path: "/userlist",
+        component: () => import("../views/UserList"),
+      },
     ],
   },
   {

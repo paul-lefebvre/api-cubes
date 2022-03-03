@@ -4,7 +4,6 @@
 
     <div class="content">
       <router-view />
-      Bienvenue sur l'espace d'administration
     </div>
   </div>
 </template>

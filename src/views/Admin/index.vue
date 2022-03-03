@@ -1,32 +1,17 @@
 <template>
   <div class="admin">
     <div class="content">
+      <!-- search is a component -->
       <button>Créer un compte</button>
+      <p>
+        Filtres : <br />
 
-      <button v-for="role in roles" :key="role.id">
-        {{ role.role }} <br />
-
-        <!--v if avec les différents rôle, à récupérer dans la base -->
-        <!--v if avec les différents rôle, à récupérer dans la base selon le rôle du compte -->
-      </button>
-      <!-- ADMIN <br />
-        - Gestion Super Administrateurs :
-        <br /><br />
-        * Creation Administrateurs
-        <br />
-        * Creation Modérateurs
-        <br />
-        - Gestion des Administrateurs :
-        <br />
-        * Creation Administrateurs<br />
-        - Gestion des Citoyen :
-        <br />
-        * Creation Citoyen <br />
-        * Creation Désactivation / Activation compte citoyen <br />
-        - Gestion des commentaires -->
-
-      <!--v if avec les différents rôle, à récupérer dans la base -->
-      <!--v if avec les différents rôle, à récupérer dans la base selon le rôle du compte -->
+        <button v-for="role in roles" :key="role.id">
+          {{ role.role }} <br />
+        </button>
+        <!-- faire une liste d'user général
+        filter cette liste d'user selon leur role -->
+      </p>
     </div>
   </div>
 </template>
