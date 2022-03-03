@@ -1,3 +1,7 @@
 .filter {
   display: inline;
 }
+
+#line-decoration {
+  border-top: #525252 2px solid;
+}

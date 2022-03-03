@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar">
-    <div class="title">Bienvenue sur l'espace d'administration</div>
+    <div class="title">
+      Bienvenue sur l'espace d'administration - Links for citizens
+    </div>
     <div class="menu-item">
       <router-link
         to="/userlist"

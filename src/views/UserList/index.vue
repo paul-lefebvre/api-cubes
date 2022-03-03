@@ -9,11 +9,14 @@
       <!-- faire une liste d'user général
         filter cette liste d'user selon leur role -->
     </p>
-    <p v-for="user in users" v-bind:key="user.id">
-      Nom : {{ user.firstname }} <br />
-      Prenom : {{ user.lastname }} <br />
-      Role : {{ user.roles }} <br />
-    </p>
+    <div>
+      Utilisateurs
+      <div id="line-decoration"></div>
+      <p v-for="user in users" v-bind:key="user.id">
+        Nom : {{ user.firstname }} Prenom : {{ user.lastname }} Role :
+        {{ user.roles }}
+      </p>
+    </div>
   </div>
 </template>
 
