@@ -34,8 +34,12 @@ const routes = [
         component: () => import("../views/Profile"),
       },
       {
-        path: "/userlist",
-        component: () => import("../views/UserList"),
+        path: "/user-list",
+        component: () => import("../views/Users/UserList"),
+      },
+      {
+        path: "/create-user",
+        component: () => import("../views/Users/CreateUser"),
       },
     ],
   },

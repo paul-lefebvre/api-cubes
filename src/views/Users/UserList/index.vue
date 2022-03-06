@@ -1,14 +1,13 @@
 <template>
   <div class="userList">
-    <p>
+    <div>
+      <router-link to="/profile" tag="button">Créer un compte</router-link>
       Filtres : <br />
 
-      <button v-for="role in roles" :key="role.id">
-        {{ role.role }} <br />
-      </button>
-      <!-- faire une liste d'user général
-        filter cette liste d'user selon leur role -->
-    </p>
+      <div v-for="role in roles" :key="role.id">
+        <button>{{ role.role }}</button>
+      </div>
+    </div>
     <div>
       Utilisateurs
       <div id="line-decoration"></div>

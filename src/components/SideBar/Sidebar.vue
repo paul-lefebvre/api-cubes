@@ -5,7 +5,7 @@
     </div>
     <div class="menu-item">
       <router-link
-        to="/userlist"
+        to="/user-list"
         active-class="active"
         tag="button"
         class="side-btn"
