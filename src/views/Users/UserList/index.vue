@@ -12,10 +12,14 @@
     <div>
       Utilisateurs
       <div id="line-decoration"></div>
-      <p v-for="user in users" v-bind:key="user.id">
-        Nom : {{ user.firstname }} Prenom : {{ user.lastname }} Role :
-        {{ user.roles }}
-      </p>
+      <ul v-for="user in users" v-bind:key="user.id">
+        <li>
+          Nom : {{ user.firstname }} Prenom : {{ user.lastname }} Role :
+          {{ user.roles }}
+          <!-- if click modif span to input modif and update -->
+          <!-- if click delete delete this id and refresh -->
+        </li>
+      </ul>
     </div>
   </div>
 </template>

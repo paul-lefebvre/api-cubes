@@ -1,6 +1,6 @@
 <template>
   <div class="CreateUser">
-    <form @submit.prevent="submitForm">
+    <form @submit="submitForm">
       <input type="text" v-model="pseudo" placeholder="pseudo" /><br />
       <input type="text" v-model="firstname" placeholder="nom" /><br />
       <input type="text" v-model="lastname" placeholder="prenom" /><br />
