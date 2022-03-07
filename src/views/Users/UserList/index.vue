@@ -1,7 +1,8 @@
 <template>
   <div class="userList">
     <div>
-      <router-link to="/profile" tag="button">Créer un compte</router-link>
+      <input type="search" />
+      <router-link to="/create-user" tag="button">Créer un compte</router-link>
       Filtres : <br />
 
       <div v-for="role in roles" :key="role.id">

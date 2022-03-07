@@ -1,32 +1,51 @@
 <template>
-  <div class="createUser">
-    <form id="form-createUser" method="post" onsubmit="">
-      <div class="form-element form-stack">
-        <label for="pseudo" class="form-label">Pseudo</label>
-        <input id="pseudo" type="text" name="pseudo" />
-      </div>
-      <div class="form-element form-stack">
-        <label for="nom" class="form-label">Nom</label>
-        <input id="nom" type="text" name="nom" />
-      </div>
-      <div class="form-element form-stack">
-        <label for="prenom" class="form-label">Prenom</label>
-        <input id="prenom" type="text" name="prenom" />
-      </div>
-      <div class="form-element form-stack">
-        <label for="email" class="form-label">Email</label>
-        <input id="email" type="email" name="email" />
-      </div>
-      <div class="form-element form-stack">
-        <label for="password" class="form-label">password</label>
-        <input id="password" type="password" name="password" />
-      </div>
+  <div class="CreateUser">
+    <form @submit.prevent="submitForm">
+      <input type="text" v-model="pseudo" placeholder="pseudo" /><br />
+      <input type="text" v-model="firstname" placeholder="nom" /><br />
+      <input type="text" v-model="lastname" placeholder="prenom" /><br />
+      <input type="email" v-model="mail" placeholder="e-mail" /><br />
+      <input
+        type="password"
+        v-model="password"
+        placeholder="mot de passe"
+      /><br />
+      <button type="submit">Créer</button>
     </form>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      pseudo: "",
+      firstname: "",
+      lastname: "",
+      role: "",
+      mail: "",
+      password: "",
+    };
+  },
+  methods: {
+    async submitForm() {
+      // eslint-disable-next-line no-unused-vars
+      const res = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({
+          pseudo: this.pseudo,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          role: "Citoyen",
+          mail: this.mail,
+          password: this.password,
+        }),
+      });
+    },
+  },
+};
 </script>
 
 <style scoped src="./style.css"></style>
