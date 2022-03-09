@@ -41,6 +41,10 @@ const routes = [
         path: "/create-user",
         component: () => import("../views/Users/CreateUser"),
       },
+      {
+        path: "/updateuser",
+        component: () => import("../views/Users/UpdateUser"),
+      },
     ],
   },
   {

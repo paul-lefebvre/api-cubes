@@ -14,8 +14,9 @@
       <div id="line-decoration"></div>
       <ul v-for="user in users" v-bind:key="user.id">
         <li>
-          Nom : {{ user.firstname }} Prenom : {{ user.lastname }} Role :
-          {{ user.roles }}
+          id : {{ user.id }} - Nom : {{ user.firstname }} - Prenom :
+          {{ user.lastname }} - Role : {{ user.roles }} -
+          <button>Modifier</button> - ><button>Supprimer</button>
           <!-- if click modif span to input modif and update -->
           <!-- if click delete delete this id and refresh -->
         </li>
