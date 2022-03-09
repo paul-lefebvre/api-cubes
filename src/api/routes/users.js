@@ -1,6 +1,8 @@
 import UserController from "../controllers/user/index.js";
 import express from "express";
+import {authenticateToken} from "../modules/MiddleWare.js";
 var router = express.Router();
+
 
 /**
  * @swagger
@@ -24,6 +26,28 @@ export default (app) => {
    *
    */
   router.get("/", UserController.findAll);
+
+  router.get("/me", authenticateToken, ((req, res) => {
+    res.send(req.user);
+  }));
+
+  /**
+   * @swagger
+   *  /api/users/:
+   *      get:
+   *          tags: [Users]
+   *          summary: Returns all users
+   *          description: Returns all users
+   *      responses:
+   *          '200':
+   *              description: Successfully returned all user
+   *          '500':
+   *              description: Failed to query for users
+   *
+   */
+  router.get("/:id",UserController.findOne);
+
+
 
   /**
    * @swagger
