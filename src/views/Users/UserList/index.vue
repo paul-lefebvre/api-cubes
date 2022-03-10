@@ -2,11 +2,14 @@
   <div class="userList">
     <div>
       <input type="search" />
-      <router-link to="/create-user" tag="button">Créer un compte</router-link>
+      <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
       Filtres : <br />
+      <div v-for="role in roles" :key="role.id">
+        <button>{{ role.role }}</button>
+      </div>
 
       <div class="card">
-        <div class="card-header">Add a new product</div>
+        <div class="card-header">Ajouter un nouvel utilisateur</div>
         <div class="card-body">
           <form class="form-inline" v-on:submit.prevent="onSubmit">
             <div class="form-group">
@@ -60,6 +63,7 @@
 
       <div class="card mt-5">
         <div class="card-header">Utilisateurs</div>
+        <div id="line-decoration"></div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table">
@@ -74,25 +78,29 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users" v-bind:key="user.id">
-                  <template v-if="editId == user.id">
-                    <td><input v-model="editUser_id" type="text" /></td>
+                <tr v-for="user in users" v-bind:key="user.usr_id">
+                  <template v-if="editId == user.usr_id">
+                    <td><input v-model="editUser.id" type="text" /></td>
 
                     <td>
-                      <input v-model="editUser_firstname" type="text" />
+                      <input v-model="editUser.pseudo" type="text" />
                     </td>
                     <td>
-                      <input v-model="editUser_lastname" type="text" />
-                    </td>
-                    <td><input v-model="editUser_role" type="text" /></td>
-                    <td>
-                      <input v-model="editUser_password" type="text" />
+                      <input v-model="editUser.firstname" type="text" />
                     </td>
                     <td>
-                      <span class="icon">
-                        <i @click="updateUser(user.id)" class="fa fa-check"></i>
-                      </span>
+                      <input v-model="editUser.lastname" type="text" />
                     </td>
+                    <td><input v-model="editUser.role" type="text" /></td>
+                    <td>
+                      <input v-model="editUser.password" type="text" />
+                    </td>
+                    <td>
+                      <button v-on:click="updateUser(user.usr_id)">
+                        valider
+                      </button>
+                    </td>
+
                     <!-- <td>
                       <span class="icon"
                         ><i @click="onCancel" class="fa fa-ban"></i
@@ -100,17 +108,16 @@
                     </td> -->
                   </template>
                   <template v-else>
-                    <td>{{ user.id }}</td>
+                    <td>{{ user.usr_id }}</td>
+                    <td>{{ user.pseudo }}</td>
                     <td>{{ user.firstname }}</td>
                     <td>{{ user.lastname }}</td>
-                    <td>{{ user.role }}</td>
+                    <td>{{ user.roles }}</td>
                     <td>
-                      <a href="#" class="icon">
-                        <i
-                          v-on:click="editUserClick(user)"
-                          class="fa fa-pencil"
-                        ></i>
-                      </a>
+                      <button v-on:click="editUserClick(user)">
+                        <i class="fa fa-pencil"></i>Modifier
+                      </button>
+
                       <!-- detail ajout component VueUser  -->
                       <!-- <router-link 
                     :to="{
@@ -122,6 +129,7 @@
                       <i class="fa fa-eye"></i>
                     </router-link> -->
                     </td>
+                    <td><button>Supprimer</button></td>
                   </template>
                 </tr>
               </tbody>
@@ -131,23 +139,6 @@
       </div>
 
       <br />
-
-      <div v-for="role in roles" :key="role.id">
-        <button>{{ role.role }}</button>
-      </div>
-    </div>
-    <div>
-      Utilisateurs
-      <div id="line-decoration"></div>
-      <ul v-for="user in users" v-bind:key="user.id">
-        <li>
-          id : {{ user.id }} - Nom : {{ user.firstname }} - Prenom :
-          {{ user.lastname }} - Role : {{ user.roles }} -
-          <button>Modifier</button> - ><button>Supprimer</button>
-          <!-- if click modif span to input modif and update -->
-          <!-- if click delete delete this id and refresh -->
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -174,23 +165,23 @@ async function getUsers() {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-async function updateUser(id) {
-  // eslint-disable-next-line no-unused-vars
-  const res = await fetch("/api/users" + id, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
+// // eslint-disable-next-line no-unused-vars
+// async function updateUser(id) {
+//   // eslint-disable-next-line no-unused-vars
+//   const res = await fetch("/api/users" + id, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
 
-    body: JSON.stringify({
-      pseudo: this.editUser_pseudo,
-      firstname: this.editUser_firstname,
-      lastname: this.editUser_lastname,
-      role: this.editUser_role,
-      mail: this.editUser_mail,
-      password: this.editUser_password,
-    }),
-  });
-}
+//     body: JSON.stringify({
+//       pseudo: this.editUser_pseudo,
+//       firstname: this.editUser_firstname,
+//       lastname: this.editUser_lastname,
+//       role: this.editUser_role,
+//       mail: this.editUser_mail,
+//       password: this.editUser_password,
+//     }),
+//   });
+// }
 
 // eslint-disable-next-line no-unused-vars
 
@@ -198,6 +189,18 @@ export default {
   data() {
     return {
       users: [],
+      editId: "",
+      editUser: [
+        {
+          id: "",
+          pseudo: "",
+          firstname: "",
+          lastname: "",
+          password: "",
+          role: "",
+          mail: "",
+        },
+      ],
       roles: [
         { id: 0, role: "Super Administrateur" },
         { id: 1, role: "Administrateur" },
@@ -207,14 +210,47 @@ export default {
     };
   },
 
-  editUserClick(user) {
-    this.editUser_pseudo = user.pseudo;
-    this.editUser_firstname = user.firstname;
-    this.editUser_lastname = user.lastname;
-    this.editUser_role = user.role;
-    this.editId = user.id;
-    this.editUser_mail = user.mail;
-    this.editUser_password = user.password;
+  methods: {
+    editUserClick(user) {
+      console.log("edit user : " + user.usr_id);
+
+      this.editId = user.usr_id;
+      this.editUser.id = user.usr_id;
+      this.editUser.pseudo = user.pseudo;
+      this.editUser.firstname = user.firstname;
+      this.editUser.lastname = user.lastname;
+      this.editUser.role = user.roles;
+      this.editUser.mail = user.mail;
+      this.editUser.password = user.password;
+      console.log("edit id : " + this.editId);
+    },
+
+    async updateUser(id) {
+      console.log(id);
+
+      // eslint-disable-next-line no-unused-vars
+      const res = await fetch("/api/users/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({
+          pseudo: this.editUser.pseudo,
+          firstname: this.editUser.firstname,
+          lastname: this.editUser.lastname,
+          roles: this.editUser.role,
+          mail: this.editUser.mail,
+          password: this.editUser.password,
+        }),
+      });
+      this.editId = "";
+      this.editUser.pseudo = "";
+      this.editUser.firstname = "";
+      this.editUser.lastname = "";
+      this.editUser.role = "";
+      this.editUser.password = "";
+      this.editUser.mail = "";
+      getUsers();
+    },
   },
 
   async mounted() {

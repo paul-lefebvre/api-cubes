@@ -38,12 +38,14 @@ export default {
           pseudo: this.pseudo,
           firstname: this.firstname,
           lastname: this.lastname,
-          role: "Citoyen",
+          roles: "Citoyen",
           mail: this.mail,
           password: this.password,
         }),
       });
+
     },
+    getUsers();
   },
 };
 </script>
