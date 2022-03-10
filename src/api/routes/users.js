@@ -32,7 +32,7 @@ export default (app) => {
 
   // jwt
   router.get("*", checkUser);
-  router.get("/me/:id", authenticateToken, (req, res) => {
+  router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
 
