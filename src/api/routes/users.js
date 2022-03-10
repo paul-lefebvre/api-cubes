@@ -1,8 +1,7 @@
 import UserController from "../controllers/user/index.js";
 import express from "express";
-import {authenticateToken} from "../modules/MiddleWare.js";
+import { authenticateToken, checkUser } from "../modules/MiddleWare.js";
 var router = express.Router();
-
 
 /**
  * @swagger
@@ -27,9 +26,15 @@ export default (app) => {
    */
   router.get("/", UserController.findAll);
 
-  router.get("/me", authenticateToken, ((req, res) => {
-    res.send(req.user);
-  }));
+  //   router.get("/me", authenticateToken, ((req, res) => {
+  //     res.send(req.user);
+  //   }));
+
+  // jwt
+  router.get("*", checkUser);
+  router.get("/me/:id", authenticateToken, (req, res) => {
+    res.send(req.id);
+  });
 
   /**
    * @swagger
@@ -45,9 +50,7 @@ export default (app) => {
    *              description: Failed to query for users
    *
    */
-  router.get("/:id",UserController.findOne);
-
-
+  router.get("/:id", UserController.findOne);
 
   /**
    * @swagger

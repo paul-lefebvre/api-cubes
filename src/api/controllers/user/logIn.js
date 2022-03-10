@@ -16,12 +16,20 @@ export default async function (req, res) {
       return res.status(501).send({ message: "mot de passe incorrect" });
     }
 
-    const token = jwt.sign({user: userWithMail},process.env.JWT_TOKEN_SECRET, { expiresIn: '3600s'})
+    const token = jwt.sign(
+      { user: userWithMail },
+      process.env.JWT_TOKEN_SECRET,
+      { expiresIn: "3600s" }
+    );
 
     return res
       .status(201)
-      .json({ acces_token: token })
-      .send({ message: "connection réussie!", user: userWithMail });
+      .json({ user: userWithMail, acces_token: token })
+      .send({
+        message: "connection réussie!",
+        user: userWithMail,
+        acces_token: token,
+      });
   } catch (e) {
     console.log(e);
     return res.status(404).send({
