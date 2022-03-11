@@ -129,7 +129,11 @@
                       <i class="fa fa-eye"></i>
                     </router-link> -->
                     </td>
-                    <td><button>Supprimer</button></td>
+                    <td>
+                      <button v-on:click="deleteUser(user.usr_id)">
+                        Supprimer
+                      </button>
+                    </td>
                   </template>
                 </tr>
               </tbody>
@@ -249,6 +253,15 @@ export default {
       this.editUser.role = "";
       this.editUser.password = "";
       this.editUser.mail = "";
+      getUsers();
+    },
+
+    async deleteUser(id) {
+      // eslint-disable-next-line no-unused-vars
+      const res = await fetch("/api/users/" + id, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
       getUsers();
     },
   },

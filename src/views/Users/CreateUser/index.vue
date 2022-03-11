@@ -43,9 +43,7 @@ export default {
           password: this.password,
         }),
       });
-
     },
-    getUsers();
   },
 };
 </script>
