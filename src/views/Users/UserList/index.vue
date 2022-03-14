@@ -185,26 +185,6 @@ async function getUsers() {
   }
 }
 
-// // eslint-disable-next-line no-unused-vars
-// async function updateUser(id) {
-//   // eslint-disable-next-line no-unused-vars
-//   const res = await fetch("/api/users" + id, {
-//     method: "PUT",
-//     headers: { "Content-Type": "application/json" },
-
-//     body: JSON.stringify({
-//       pseudo: this.editUser_pseudo,
-//       firstname: this.editUser_firstname,
-//       lastname: this.editUser_lastname,
-//       role: this.editUser_role,
-//       mail: this.editUser_mail,
-//       password: this.editUser_password,
-//     }),
-//   });
-// }
-
-// eslint-disable-next-line no-unused-vars
-
 export default {
   data() {
     return {
@@ -301,7 +281,6 @@ export default {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
-
       this.users = await getUsers();
     },
   },
