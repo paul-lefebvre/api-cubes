@@ -17,3 +17,7 @@ h3 {
 .icon i {
   cursor: pointer;
 }
+
+.form-inline {
+  display: inline;
+}

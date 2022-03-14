@@ -13,10 +13,10 @@
         <div class="card-body">
           <form class="form-inline" v-on:submit.prevent="onSubmit">
             <div class="form-group">
-              <label>ID</label>
+              <label>Pseudo</label>
               <!-- voir la maj pour la donnee firstname -->
               <input
-                v-model="id"
+                v-model="pseudo"
                 type="text"
                 class="form-control m1-sm-2 mr-sm-4 my-2"
                 required
@@ -47,13 +47,27 @@
               <!-- voir la maj pour la donnee firstname -->
               <input
                 v-model="password"
-                type="text"
+                type="password"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="mail"
+                type="email"
                 class="form-control m1-sm-2 mr-sm-4 my-2"
                 required
               />
             </div>
             <div class="ml-auto text-right">
-              <button type="submit" class="btn btn-primary my-2">
+              <button
+                type="submit"
+                class="btn btn-primary my-2"
+                @click="CreateUser()"
+              >
                 Ajouter
               </button>
             </div>
@@ -78,48 +92,49 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users" v-bind:key="user.usr_id">
-                  <template v-if="editId == user.usr_id">
-                    <td><input v-model="editUser.id" type="text" /></td>
+                <template v-for="user in users" v-bind:key="user.usr_id">
+                  <tr>
+                    <template v-if="editId == user.usr_id">
+                      <td><input v-model="editUser.id" type="text" /></td>
 
-                    <td>
-                      <input v-model="editUser.pseudo" type="text" />
-                    </td>
-                    <td>
-                      <input v-model="editUser.firstname" type="text" />
-                    </td>
-                    <td>
-                      <input v-model="editUser.lastname" type="text" />
-                    </td>
-                    <td><input v-model="editUser.role" type="text" /></td>
-                    <td>
-                      <input v-model="editUser.password" type="text" />
-                    </td>
-                    <td>
-                      <button v-on:click="updateUser(user.usr_id)">
-                        valider
-                      </button>
-                    </td>
+                      <td>
+                        <input v-model="editUser.pseudo" type="text" />
+                      </td>
+                      <td>
+                        <input v-model="editUser.firstname" type="text" />
+                      </td>
+                      <td>
+                        <input v-model="editUser.lastname" type="text" />
+                      </td>
+                      <td><input v-model="editUser.role" type="text" /></td>
+                      <td>
+                        <input v-model="editUser.password" type="text" />
+                      </td>
+                      <td>
+                        <button v-on:click="updateUser(user.usr_id)">
+                          valider
+                        </button>
+                      </td>
 
-                    <!-- <td>
+                      <!-- <td>
                       <span class="icon"
                         ><i @click="onCancel" class="fa fa-ban"></i
                       ></span>
                     </td> -->
-                  </template>
-                  <template v-else>
-                    <td>{{ user.usr_id }}</td>
-                    <td>{{ user.pseudo }}</td>
-                    <td>{{ user.firstname }}</td>
-                    <td>{{ user.lastname }}</td>
-                    <td>{{ user.roles }}</td>
-                    <td>
-                      <button v-on:click="editUserClick(user)">
-                        <i class="fa fa-pencil"></i>Modifier
-                      </button>
+                    </template>
+                    <template v-else>
+                      <td>{{ user.usr_id }}</td>
+                      <td>{{ user.pseudo }}</td>
+                      <td>{{ user.firstname }}</td>
+                      <td>{{ user.lastname }}</td>
+                      <td>{{ user.roles }}</td>
+                      <td>
+                        <button v-on:click="editUserClick(user)">
+                          <i class="fa fa-pencil"></i>Modifier
+                        </button>
 
-                      <!-- detail ajout component VueUser  -->
-                      <!-- <router-link 
+                        <!-- detail ajout component VueUser  -->
+                        <!-- <router-link 
                     :to="{
                       name:'ProductPage', 
                       params:{id: product.id}
@@ -128,14 +143,15 @@
                     >
                       <i class="fa fa-eye"></i>
                     </router-link> -->
-                    </td>
-                    <td>
-                      <button v-on:click="deleteUser(user.usr_id)">
-                        Supprimer
-                      </button>
-                    </td>
-                  </template>
-                </tr>
+                      </td>
+                      <td>
+                        <button v-on:click="deleteUser(user.usr_id)">
+                          Supprimer
+                        </button>
+                      </td>
+                    </template>
+                  </tr>
+                </template>
               </tbody>
             </table>
           </div>
@@ -215,6 +231,29 @@ export default {
   },
 
   methods: {
+    async CreateUser() {
+      // eslint-disable-next-line no-unused-vars
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({
+          pseudo: this.pseudo,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          roles: "Citoyen",
+          mail: this.mail,
+          password: this.password,
+        }),
+      });
+      this.pseudo = "";
+      this.firstname = "";
+      this.lastname = "";
+      this.mail = "";
+      this.password = "";
+      this.users = await getUsers();
+    },
+
     editUserClick(user) {
       console.log("edit user : " + user.usr_id);
 
@@ -253,7 +292,7 @@ export default {
       this.editUser.role = "";
       this.editUser.password = "";
       this.editUser.mail = "";
-      getUsers();
+      this.users = await getUsers();
     },
 
     async deleteUser(id) {
@@ -262,7 +301,8 @@ export default {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
-      getUsers();
+
+      this.users = await getUsers();
     },
   },
 

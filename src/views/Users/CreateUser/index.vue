@@ -10,7 +10,7 @@
         v-model="password"
         placeholder="mot de passe"
       /><br />
-      <button type="submit">Créer</button>
+      <button type="submit" @click="submitForm()">Créer</button>
     </form>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
   methods: {
     async submitForm() {
       // eslint-disable-next-line no-unused-vars
-      const res = await fetch("/api/users", {
+      const response = await fetch("/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
 
