@@ -35,7 +35,7 @@ export default (app) => {
   router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
-router.get("/logout", UserController.logout);
+  router.get("/logout", UserController.logout);
 
   /**
    * @swagger
