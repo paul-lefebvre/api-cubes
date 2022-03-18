@@ -1,15 +1,15 @@
 <template>
   <div class="ressources">
-    <div class="content">
-      - Liste ressources
-      <br />
-      - Filtre ressources
-      <br />
-      - Ajouter / Editer ressources
-      <br />
-      - supprimer / suspendre une ressources
-      <br />
-      - créer/editer/supprimer catégorie
+    <div class="create-ressources">
+      <p>Ajouter une ressource</p>
+      <form v-on:submit.prevent="onSubmit">
+        <label>Nom</label>
+        <input type="text" />
+        <label>Image</label>
+        <input type="" />
+        <label>Fichier</label>
+        <input type="file" />
+      </form>
     </div>
   </div>
 </template>
