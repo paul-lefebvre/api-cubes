@@ -1,7 +1,7 @@
 <template>
   <div class="userList">
     <div>
-      <input type="search" />
+      <input type="search" v-model="searchKey" />
       <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
       Filtres : <br />
       <div v-for="role in roles" :key="role.id">
@@ -15,52 +15,26 @@
             <div class="form-group">
               <label>Pseudo</label>
               <!-- voir la maj pour la donnee firstname -->
-              <input
-                v-model="pseudo"
-                type="text"
-                class="form-control m1-sm-2 mr-sm-4 my-2"
-                required
-              />
+              <input v-model="pseudo" type="text" required />
             </div>
             <div class="form-group">
               <label>Nom</label>
               <!-- voir la maj pour la donnee firstname -->
-              <input
-                v-model="firstname"
-                type="text"
-                class="form-control m1-sm-2 mr-sm-4 my-2"
-                required
-              />
+              <input v-model="firstname" type="text" required />
             </div>
             <div class="form-group">
               <label>Prenom</label>
               <!-- voir la maj pour la donnee firstname -->
-              <input
-                v-model="lastname"
-                type="text"
-                class="form-control m1-sm-2 mr-sm-4 my-2"
-                required
-              />
+              <input v-model="lastname" type="text" required />
             </div>
             <div class="form-group">
               <label>Mot de passe</label>
-              <!-- voir la maj pour la donnee firstname -->
-              <input
-                v-model="password"
-                type="password"
-                class="form-control m1-sm-2 mr-sm-4 my-2"
-                required
-              />
+              <input v-model="password" type="password" required />
             </div>
             <div class="form-group">
               <label>E-mail</label>
               <!-- voir la maj pour la donnee firstname -->
-              <input
-                v-model="mail"
-                type="email"
-                class="form-control m1-sm-2 mr-sm-4 my-2"
-                required
-              />
+              <input v-model="mail" type="email" required />
             </div>
             <div class="ml-auto text-right">
               <button
@@ -78,6 +52,7 @@
       <div class="card mt-5">
         <div class="card-header">Utilisateurs</div>
         <div id="line-decoration"></div>
+        <h1 v-if="search.length == 0">Aucun résultat</h1>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table">
@@ -92,7 +67,7 @@
                 </tr>
               </thead>
               <tbody>
-                <template v-for="user in users" v-bind:key="user.usr_id">
+                <template v-for="user in search" v-bind:key="user.usr_id">
                   <tr>
                     <template v-if="editId == user.usr_id">
                       <td><input v-model="editUser.id" type="text" /></td>
@@ -190,6 +165,7 @@ export default {
     return {
       users: [],
       editId: "",
+      searchKey: "",
       editUser: [
         {
           id: "",
@@ -208,6 +184,24 @@ export default {
         { id: 3, role: "Citoyen" },
       ],
     };
+  },
+  computed: {
+    search() {
+      return this.users.filter((userSearch) => {
+        return (
+          userSearch.firstname
+            .toLowerCase()
+            .includes(this.searchKey.toLowerCase()),
+          userSearch.lastname
+            .toLowerCase()
+            .includes(this.searchKey.toLowerCase()),
+          // userSearch.pseudo
+          //   .toLowerCase()
+          //   .includes(this.searchKey.toLowerCase()),
+          userSearch.roles.toLowerCase().includes(this.searchKey.toLowerCase())
+        );
+      });
+    },
   },
 
   methods: {
