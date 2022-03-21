@@ -1,7 +1,15 @@
 <template>
   <div class="userList">
+    
     <div>
-      <input type="search" v-model="searchKey" placeholder="recherche" />
+      Rechercher : 
+      <icon-base icon-name="search"><icon-search /></icon-base>
+      <input
+        type="search"
+        v-model="searchKey"
+        placeholder="recherche utilisateur"
+      />
+      <br /><br />
       <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
       <div class="form-inline">
         Filtres : <br />
@@ -9,6 +17,7 @@
           <button @click="searchRole(role.role)">{{ role.role }}</button>
         </div>
       </div>
+      <br /><br />
 
       <div class="card">
         <div class="card-header">Ajouter un nouvel utilisateur</div>
@@ -50,6 +59,7 @@
           </form>
         </div>
       </div>
+      <br /><br />
 
       <div class="card mt-5">
         <div class="card-header">Utilisateurs</div>
@@ -143,6 +153,10 @@
 </template>
 
 <script>
+import IconBase from "@/components/IconBase.vue";
+// import IconMoon from "@/components/icons/IconMoon.vue";
+import IconSearch from "@/components/icons/IconSearch.vue";
+
 async function getUsers() {
   try {
     let users = await fetch("/api/users/", {
@@ -165,9 +179,16 @@ async function getUsers() {
 }
 
 export default {
+  components: {
+    IconBase,
+    // IconMoon,
+    IconSearch
+  },
+
   data() {
     return {
       users: [],
+
       editId: "",
       searchKey: "",
       editUser: [
@@ -189,6 +210,7 @@ export default {
       ],
     };
   },
+
   computed: {
     search() {
       return this.users.filter((userSearch) => {
