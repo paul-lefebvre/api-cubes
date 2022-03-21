@@ -1,25 +1,39 @@
-import {Op} from 'sequelize';
-import model from '../../models/index.js';
+import model from "../../models/index.js";
+import { Op } from "sequelize";
+import jwt from "jsonwebtoken";
 
-const {User} = model;
-//const jwt = require("jsonwebtoken");
-
+const { User } = model;
 
 export default async function (req, res) {
+  const { mail, password } = req.body;
 
-    const {email, password} = req.body;
+  try {
+    const userWithMail = await User.findOne({ where: { [Op.or]: [{ mail }] } });
+    if (!userWithMail) {
+      return res.status(500).send({ message: "ce mail est inconnu" });
+    }
+    if (userWithMail.password !== password) {
+      return res.status(501).send({ message: "mot de passe incorrect" });
+    }
 
-    const userWithEmail = await User.findOne({where: {email}}).catch((err) => {
-        console.log("Error: ", err);
-    })
+    const token = jwt.sign(
+      { user: userWithMail },
+      process.env.JWT_TOKEN_SECRET,
+      { expiresIn: "3600s" }
+    );
 
-    if (!userWithEmail)
-        return res.json({message: "Email or password does not match!"});
-
-    if (userWithEmail.password !== password)
-        return res.json({message: "Email or password does not match!"});
-
-    //const jwtToken = jwt.sign({id: userWithEmail.id, email: userWithEmail.email}, process.env.JWT_TOKEN_SECRET);
-
-    res.json({message: "Welcome"});
+    return res
+      .status(201)
+      .json({ user: userWithMail, acces_token: token })
+      .send({
+        message: "connection réussie!",
+        user: userWithMail,
+        acces_token: token,
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(404).send({
+      message: "requête impossible" + e.message,
+    });
+  }
 }

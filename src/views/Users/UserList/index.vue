@@ -188,6 +188,12 @@ export default {
   computed: {
     search() {
       return this.users.filter((userSearch) => {
+        if (userSearch.pseudo == null) {
+          userSearch.pseudo = "";
+        }
+        if (userSearch.roles == null) {
+          userSearch.role = "Citoyen";
+        }
         return (
           userSearch.firstname
             .toLowerCase()
@@ -195,9 +201,9 @@ export default {
           userSearch.lastname
             .toLowerCase()
             .includes(this.searchKey.toLowerCase()),
-          // userSearch.pseudo
-          //   .toLowerCase()
-          //   .includes(this.searchKey.toLowerCase()),
+          userSearch.pseudo
+            .toLowerCase()
+            .includes(this.searchKey.toLowerCase()),
           userSearch.roles.toLowerCase().includes(this.searchKey.toLowerCase())
         );
       });
