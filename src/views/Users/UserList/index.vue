@@ -1,11 +1,13 @@
 <template>
   <div class="userList">
     <div>
-      <input type="search" v-model="searchKey" />
+      <input type="search" v-model="searchKey" placeholder="recherche" />
       <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
-      Filtres : <br />
-      <div v-for="role in roles" :key="role.id">
-        <button>{{ role.role }}</button>
+      <div class="form-inline">
+        Filtres : <br />
+        <div v-for="role in roles" :key="role.id">
+          <button @click="searchRole(role.role)">{{ role.role }}</button>
+        </div>
       </div>
 
       <div class="card">
@@ -14,17 +16,17 @@
           <form class="form-inline" v-on:submit.prevent="onSubmit">
             <div class="form-group">
               <label>Pseudo</label>
-              <!-- voir la maj pour la donnee firstname -->
+
               <input v-model="pseudo" type="text" required />
             </div>
             <div class="form-group">
               <label>Nom</label>
-              <!-- voir la maj pour la donnee firstname -->
+
               <input v-model="firstname" type="text" required />
             </div>
             <div class="form-group">
               <label>Prenom</label>
-              <!-- voir la maj pour la donnee firstname -->
+
               <input v-model="lastname" type="text" required />
             </div>
             <div class="form-group">
@@ -33,7 +35,7 @@
             </div>
             <div class="form-group">
               <label>E-mail</label>
-              <!-- voir la maj pour la donnee firstname -->
+
               <input v-model="mail" type="email" required />
             </div>
             <div class="ml-auto text-right">
@@ -234,6 +236,11 @@ export default {
       this.mail = "";
       this.password = "";
       this.users = await getUsers();
+    },
+
+    searchRole(role) {
+      this.searchKey = role;
+      this.search();
     },
 
     editUserClick(user) {

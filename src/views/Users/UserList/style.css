@@ -19,5 +19,6 @@ h3 {
 }
 
 .form-inline {
-  display: inline;
+  display: flex;
+  flex-direction: row;
 }
