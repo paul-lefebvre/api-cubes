@@ -1,9 +1,8 @@
 <template>
   <div class="userList">
-    
     <div>
-      Rechercher : 
-      <icon-base icon-name="search"><icon-search /></icon-base>
+      Rechercher :
+      <img src="@/assets/icons/iconSearch.svg" width="15" height="15" />
       <input
         type="search"
         v-model="searchKey"
@@ -14,47 +13,45 @@
       <div class="form-inline">
         Filtres : <br />
         <div v-for="role in roles" :key="role.id">
-          <button @click="searchRole(role.role)">{{ role.role }}</button>
+          <button @click="searchRole(value)" value="role.role">
+            {{ role.role }}
+          </button>
         </div>
       </div>
       <br /><br />
 
       <div class="card">
-        <div class="card-header">Ajouter un nouvel utilisateur</div>
+        <h1>Ajouter un nouvel utilisateur</h1>
         <div class="card-body">
           <form class="form-inline" v-on:submit.prevent="onSubmit">
             <div class="form-group">
-              <label>Pseudo</label>
+              <label>Pseudo </label>
 
               <input v-model="pseudo" type="text" required />
             </div>
             <div class="form-group">
-              <label>Nom</label>
+              <label>Nom </label>
 
               <input v-model="firstname" type="text" required />
             </div>
+
             <div class="form-group">
-              <label>Prenom</label>
+              <label>Prenom </label>
 
               <input v-model="lastname" type="text" required />
             </div>
+
             <div class="form-group">
-              <label>Mot de passe</label>
+              <label>Mot de passe </label>
               <input v-model="password" type="password" required />
             </div>
             <div class="form-group">
-              <label>E-mail</label>
+              <label>E-mail </label>
 
               <input v-model="mail" type="email" required />
             </div>
             <div class="ml-auto text-right">
-              <button
-                type="submit"
-                class="btn btn-primary my-2"
-                @click="CreateUser()"
-              >
-                Ajouter
-              </button>
+              <button type="submit" @click="CreateUser()">Ajouter</button>
             </div>
           </form>
         </div>
@@ -90,10 +87,10 @@
                         <input v-model="editUser.pseudo" type="text" />
                       </td>
                       <td>
-                        <input v-model="editUser.firstname" type="text" />
+                        <input v-model="editUser.lastname" type="text" />
                       </td>
                       <td>
-                        <input v-model="editUser.lastname" type="text" />
+                        <input v-model="editUser.firstname" type="text" />
                       </td>
                       <td><input v-model="editUser.role" type="text" /></td>
                       <td>
@@ -114,12 +111,12 @@
                     <template v-else>
                       <td>{{ user.usr_id }}</td>
                       <td>{{ user.pseudo }}</td>
-                      <td>{{ user.firstname }}</td>
                       <td>{{ user.lastname }}</td>
+                      <td>{{ user.firstname }}</td>
                       <td>{{ user.roles }}</td>
                       <td>
                         <button v-on:click="editUserClick(user)">
-                          <i class="fa fa-pencil"></i>Modifier
+                          Modifier
                         </button>
 
                         <!-- detail ajout component VueUser  -->
@@ -153,10 +150,6 @@
 </template>
 
 <script>
-import IconBase from "@/components/IconBase.vue";
-// import IconMoon from "@/components/icons/IconMoon.vue";
-import IconSearch from "@/components/icons/IconSearch.vue";
-
 async function getUsers() {
   try {
     let users = await fetch("/api/users/", {
@@ -179,16 +172,9 @@ async function getUsers() {
 }
 
 export default {
-  components: {
-    IconBase,
-    // IconMoon,
-    IconSearch
-  },
-
   data() {
     return {
       users: [],
-
       editId: "",
       searchKey: "",
       editUser: [
@@ -218,20 +204,12 @@ export default {
           userSearch.pseudo = "";
         }
         if (userSearch.roles == null) {
-          userSearch.role = "Citoyen";
+          userSearch.role = "";
         }
-        return (
-          userSearch.firstname
-            .toLowerCase()
-            .includes(this.searchKey.toLowerCase()),
-          userSearch.lastname
-            .toLowerCase()
-            .includes(this.searchKey.toLowerCase()),
-          userSearch.pseudo
-            .toLowerCase()
-            .includes(this.searchKey.toLowerCase()),
-          userSearch.roles.toLowerCase().includes(this.searchKey.toLowerCase())
-        );
+
+        return userSearch.firstname
+          .toLowerCase()
+          .includes(this.searchKey.toLowerCase());
       });
     },
   },
@@ -257,12 +235,17 @@ export default {
       this.lastname = "";
       this.mail = "";
       this.password = "";
+      this.roles = "";
       this.users = await getUsers();
     },
 
     searchRole(role) {
       this.searchKey = role;
-      this.search();
+      return this.users.filter((userSearch) => {
+        return userSearch.role
+          .toLowerCase()
+          .includes(this.searchKey.toLowerCase());
+      });
     },
 
     editUserClick(user) {
@@ -280,8 +263,6 @@ export default {
     },
 
     async updateUser(id) {
-      console.log(id);
-
       // eslint-disable-next-line no-unused-vars
       const res = await fetch("/api/users/" + id, {
         method: "PUT",
