@@ -63,10 +63,12 @@
                   <th>Nom</th>
                   <th>Prenom</th>
                   <th>Role</th>
+                  <th></th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
+                <!-- update -->
                 <template v-for="user in search" v-bind:key="user.usr_id">
                   <tr>
                     <template v-if="editId == user.usr_id">
