@@ -165,6 +165,12 @@ CREATED_AT           DATE                 null,
 constraint PK_CATEGORIES primary key (CAT_ID)
 );
 
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (1,'Jardinage','Venez cultiver votre potager','img/jardin.png',18,'2022-03-21');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (2,'Bricolage','Participer aux sessions tuto avec notre Mr Bricolage','img/brico.png',12,'2022-02-21');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (3,'Decoration','Apprenez à dynamiser votre intérieur','img/deco.png',12,'2022-03-12');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (4,'Location','Louer tout ce que vous souhaitez','img/loc.png',8,'2022-03-14');
+
+
 /*==============================================================*/
 /* Index : CATEGORIES_PK                                        */
 /*==============================================================*/
@@ -186,6 +192,7 @@ IS_SIGNALED          INT4                 null,
 CREATED_AT           DATE                 null,
 constraint PK_COMMENTS primary key (COM_ID)
 );
+
 
 /*==============================================================*/
 /* Index : COMMENTS_PK                                          */
@@ -526,6 +533,11 @@ NB_SHARES            INT4                 null,
 CREATED_AT           DATE                 null,
 constraint PK_RESSOURCES primary key (RES_ID)
 );
+
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (1,1,1,'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',0,47,25,18,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (2,2,2,'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which ...',0,21,32,10,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (3,3,3,'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from ...',0,74,13,28,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (4,4,4,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',0,2,34,12,'2022-03-21');
 
 /*==============================================================*/
 /* Index : RESSOURCES_PK                                        */
