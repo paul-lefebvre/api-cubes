@@ -13,7 +13,11 @@
       <div class="form-inline">
         Filtres : <br />
         <div v-for="role in roles" :key="role.id">
-          <button @click="searchRole(value)" value="role.role">
+          <button
+            @click="searchRole(role.role)"
+            
+            value="role.role"
+          >
             {{ role.role }}
           </button>
         </div>
@@ -177,6 +181,7 @@ export default {
       users: [],
       editId: "",
       searchKey: "",
+      //searchRole: "",
       editUser: [
         {
           id: "",
@@ -204,12 +209,35 @@ export default {
           userSearch.pseudo = "";
         }
         if (userSearch.roles == null) {
-          userSearch.role = "";
+          userSearch.roles = "";
         }
+
+        // console.log("search role : " + this.searchRole);
+        // if (this.searchRole != "") {
+        //   console.log(this.searchRole);
+        //   return userSearch.roles
+        //     .toLowerCase()
+        //     .includes(this.searchRole.toLowerCase());
+        // }
+        console.log("role : " + this.searchKey);
+      if (this.searchKey == "Super Administrateur" || this.searchKey == "Administrateur" || this.searchKey == "Citoyen" || this.searchKey == "Moderateur"){
+        return userSearch.roles.toLowerCase().includes(this.searchKey.toLowerCase());
+      }
+        
 
         return userSearch.firstname
           .toLowerCase()
-          .includes(this.searchKey.toLowerCase());
+          .includes(this.searchKey.toLowerCase()); //boolean
+        // userSearch.roles.toLowerCase().includes(this.searchRole.toLowerCase())
+
+        // let lastname = userSearch.lastname.toLowerCase.includes(
+        //   this.searchKey.toLowerCase()
+        // );
+        // console.log("lastname : " + lastname);
+
+        // let result = firstname + lastname;
+        // console.log("resultat : " + result);
+        // return result;
       });
     },
   },
@@ -238,15 +266,21 @@ export default {
       this.roles = "";
       this.users = await getUsers();
     },
+    
 
-    searchRole(role) {
+    searchRole(role){
       this.searchKey = role;
-      return this.users.filter((userSearch) => {
-        return userSearch.role
-          .toLowerCase()
-          .includes(this.searchKey.toLowerCase());
-      });
+      
     },
+
+    // searchRole(role) {
+    //   this.searchKey = role;
+    //   return this.users.filter((userSearch) => {
+    //     return userSearch.role
+    //       .toLowerCase()
+    //       .includes(this.searchKey.toLowerCase());
+    //   });
+    // },
 
     editUserClick(user) {
       console.log("edit user : " + user.usr_id);

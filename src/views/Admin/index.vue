@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <div class="content">
-      <!-- search is a component -->
+      
       <button>Créer un compte</button>
       <p>
         Filtres : <br />
