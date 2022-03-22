@@ -1,4 +1,5 @@
 import model from '../../models/index.js';
+import {Op} from "sequelize";
 const { User } = model;
 
 export default async function (req, res) {

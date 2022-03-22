@@ -1,7 +1,23 @@
 import UserController from "../controllers/user/index.js";
 import express from "express";
 import { authenticateToken, checkUser } from "../modules/MiddleWare.js";
+import multer from "multer";
 var router = express.Router();
+
+
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, ("./public/upload/images/avatar/"))
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "__" + file.originalname )
+  }
+});
+
+const upload = multer({ storage: storage});
+
 
 /**
  * @swagger
@@ -32,6 +48,10 @@ export default (app) => {
 
   // jwt
   router.get("*", checkUser);
+  router.post("/upload", upload.single('image'), (req, res) =>{
+    //console.log(req.file);
+    res.send("c'est bon putain")
+  });
   router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
@@ -75,6 +95,7 @@ export default (app) => {
    *              description: Bad request
    */
   router.get("/:id", UserController.findOne);
+  router.post("/:id/upload", upload.single('image'), UserController.upload);
 
   /**
    * @swagger
