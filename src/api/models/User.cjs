@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 		});
 		
 		User.belongsTo(models.Ressource, {
-			as: "owners",
+			as: "owner",
 			foreignKey: "usr_id",
 		});
 		

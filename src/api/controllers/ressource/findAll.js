@@ -6,8 +6,9 @@ export default async function (req, res) {
 
 	Ressource.findAll({
 		include: [
-			'categories',
-			'owners'
+			'category',
+			'owner',
+			'media',
 		],
 	})
     .then(data => {

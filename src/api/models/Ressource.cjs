@@ -4,17 +4,21 @@ module.exports = (sequelize, DataTypes) => {
   class Ressource extends Model {
 
     static associate(models) {
-		Ressource.hasMany(models.Category, {
-			as: 'categories',
-			foreignKey: 'cat_id',
-			onDelete: 'cascade',
-			hooks: true
-		});	
 		Ressource.hasOne(models.User, {
-			as: 'owners',
+			as: 'owner',
 			foreignKey: 'usr_id',
 			onDelete: 'cascade',
 			hooks: true
+		});
+		Ressource.hasOne(models.Category, {
+			as: 'category',
+			foreignKey: 'cat_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		Ressource.belongsTo(models.Media, {
+			as: "media",
+			foreignKey: "res_id",
 		});
     }
   }

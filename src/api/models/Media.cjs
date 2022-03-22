@@ -1,6 +1,4 @@
-const { Model, Deferrable } = require('sequelize');
-
-import Ressource from './Ressource.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Media extends Model {
@@ -10,22 +8,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+		Media.hasOne(models.Ressource, {
+			as: 'media',
+			foreignKey: 'res_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
     }
   }
   Media.init({
     med_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
     },
     res_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Ressource,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     path: DataTypes.STRING,
     is_picture: DataTypes.INTEGER,

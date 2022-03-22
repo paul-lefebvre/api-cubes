@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Category.belongsTo(models.Ressource, {
-        as: "categories",
+        as: "category",
         foreignKey: "cat_id",
       });
     }
