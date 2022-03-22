@@ -3,12 +3,9 @@ import model from '../../models/index.js';
 const { User } = model;
 
 export default async function (req, res) {
-    
-    const pseudo = req.query.pseudo;
-    
-    var condition = pseudo ? { pseudo: { [Op.like]: `%${pseudo}%` } } : null;
-
-    User.findAll({ where: condition })
+	User.findAll({
+		include: 'relations'
+	})
     .then(data => {
       res.send(data);
     })

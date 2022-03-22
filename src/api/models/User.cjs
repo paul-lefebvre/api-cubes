@@ -8,13 +8,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      User.hasMany(models.Relation, {
-		as: 'relations',
-		foreignKey: 'follower_id',
-		onDelete: 'cascade',
-		hooks: true
-	});
+		// define association here
+		User.hasMany(models.Relation, {
+			as: 'relations',
+			foreignKey: 'follower_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		
+		User.belongsTo(models.Ressource, {
+			as: "owners",
+			foreignKey: "usr_id",
+		});
+		
     }
   }
   User.init(
