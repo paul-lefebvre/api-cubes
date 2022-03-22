@@ -1,4 +1,4 @@
-const { Model } = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Relation extends Model {
@@ -9,22 +9,40 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Relation.belongsTo(models.User, {
+        as: "follower",
+        foreignKey: "follower_id",
+      });
+      Relation.belongsTo(models.User, {
+        as: "followed",
+        foreignKey: "followed_id",
+      });
     }
   }
-  Relation.init({
-    rel_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+  Relation.init(
+    {
+      rel_id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      follower_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      followed_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    type: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Relation',
-    tableName: 'relations',
-    createdAt: 'created_at',
-    updatedAt: false,
-    freezeTableName: true,
-  });
+    {
+      sequelize,
+      modelName: "Relation",
+      tableName: "relation",
+      createdAt: "created_at",
+      updatedAt: false,
+      freezeTableName: true,
+    }
+  );
   return Relation;
 };

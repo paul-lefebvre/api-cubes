@@ -305,35 +305,38 @@ GRP_ID
 );
 
 /*==============================================================*/
-/* Table : LIER                                                 */
+/* Table : RELATION                                                */
 /*==============================================================*/
-create table lfc.LIER (
-USR_ID               INT4                 not null,
-REL_ID               INT4                 not null,
-constraint PK_LIER primary key (USR_ID, REL_ID)
+CREATE TABLE lfc.RELATION (
+	REL_ID 		SERIAL 			NOT NULL,
+	FOLLOWER_ID 	INT4 			NOT NULL,
+	FOLLOWED_ID 	INT4 			NOT NULL,
+	CREATED_AT      DATE            null,
+	constraint PK_REL primary key (REL_ID)
 );
 
 /*==============================================================*/
-/* Index : LIER_PK                                              */
+/* Index : REL_PK                                             */
 /*==============================================================*/
-create unique index LIER_PK on lfc.LIER (
-USR_ID,
+create unique index REL_PK on lfc.RELATION (
 REL_ID
 );
 
 /*==============================================================*/
-/* Index : LIER_FK                                              */
+/* Index : REL_FK                                            */
 /*==============================================================*/
-create  index LIER_FK on lfc.LIER (
-USR_ID
+create unique index REL_FK on lfc.RELATION (
+FOLLOWER_ID
 );
 
 /*==============================================================*/
-/* Index : LIER2_FK                                             */
+/* Index : REL2_FK                                            */
 /*==============================================================*/
-create  index LIER2_FK on lfc.LIER (
-REL_ID
+create unique index REL2_FK on lfc.RELATION (
+FOLLOWED_ID
 );
+
+
 
 /*==============================================================*/
 /* Table : LIKES                                                */
@@ -480,23 +483,6 @@ USR_ID
 /*==============================================================*/
 create  index PARTICIPER2_FK on lfc.PARTICIPER (
 EVT_ID
-);
-
-/*==============================================================*/
-/* Table : RELATIONS                                            */
-/*==============================================================*/
-create table lfc.RELATIONS (
-REL_ID               SERIAL               not null,
-TYPE                 VARCHAR(50)          null,
-CREATED_AT           DATE                 null,
-constraint PK_RELATIONS primary key (REL_ID)
-);
-
-/*==============================================================*/
-/* Index : RELATIONS_PK                                         */
-/*==============================================================*/
-create unique index RELATIONS_PK on lfc.RELATIONS (
-REL_ID
 );
 
 /*==============================================================*/
@@ -651,6 +637,11 @@ AVATAR_IMG           VARCHAR(900)         null,
 constraint PK_USERS primary key (USR_ID)
 );
 
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (1,'IronMan','Morgan','Stark','0232356564','mstark@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (2,'CaptainAmerica','Steeve','Rogers','0232356564','srogers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (3,'Hulk','Bruce','Banner','0232356564','bbanner@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (4,'Dr Strange','Stephen','Strange','0232356564','sstrange@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+
 /*==============================================================*/
 /* Index : USERS_PK                                             */
 /*==============================================================*/
@@ -702,14 +693,14 @@ alter table lfc.DISCUTER
       references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc.LIER
-   add constraint FK_LIER_LIER_USERS foreign key (USR_ID)
+alter table lfc.RELATION
+   add constraint FK_REL_USERS foreign key (FOLLOWER_ID)
       references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc.LIER
-   add constraint FK_LIER_LIER2_RELATION foreign key (REL_ID)
-      references lfc.RELATIONS (REL_ID)
+alter table lfc.RELATION
+   add constraint FK_REL_REL_USERS foreign key (FOLLOWED_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
 alter table lfc.LIKES

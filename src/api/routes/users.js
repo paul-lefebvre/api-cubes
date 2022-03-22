@@ -35,7 +35,7 @@ export default (app) => {
   router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
-router.get("/logout", UserController.logout);
+  router.get("/logout", UserController.logout);
 
   /**
    * @swagger
@@ -167,6 +167,52 @@ router.get("/logout", UserController.logout);
    *              description: Bad request
    */
   router.delete("/:id", UserController.deleteOne);
+
+  /**
+   * @swagger
+   *  /api/users/follow/{id}:
+   *      delete:
+   *          tags: [Users]
+   *          summary: Use to delete an user
+   *          description: Use to delete an user
+   *      parameters:
+   *          - name: ID
+   *            in: params
+   *            description: ID of the user
+   *            required: true
+   *            schema:
+   *              type: integer
+   *              format: integer
+   *      responses:
+   *          '200':
+   *              description: Successfully follow the user
+   *          '500':
+   *              description: Bad request
+   */
+  router.patch("/follow/:id", UserController.follow);
+
+  /**
+   * @swagger
+   *  /api/users/unfollow/{id}:
+   *      delete:
+   *          tags: [Users]
+   *          summary: Use to delete an user
+   *          description: Use to delete an user
+   *      parameters:
+   *          - name: ID
+   *            in: params
+   *            description: ID of the user
+   *            required: true
+   *            schema:
+   *              type: integer
+   *              format: integer
+   *      responses:
+   *          '200':
+   *              description: Successfully follow the user
+   *          '500':
+   *              description: Bad request
+   */
+  router.patch("/unfollow/:id", UserController.unfollow);
 
   app.use("/api/users", router);
 };
