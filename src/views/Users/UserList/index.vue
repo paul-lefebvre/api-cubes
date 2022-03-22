@@ -1,0 +1,294 @@
+<template>
+  <div class="userList">
+    <div>
+      <input type="search" />
+      <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
+      Filtres : <br />
+      <div v-for="role in roles" :key="role.id">
+        <button>{{ role.role }}</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Ajouter un nouvel utilisateur</div>
+        <div class="card-body">
+          <form class="form-inline" v-on:submit.prevent="onSubmit">
+            <div class="form-group">
+              <label>Pseudo</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="pseudo"
+                type="text"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="firstname"
+                type="text"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Prenom</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="lastname"
+                type="text"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Mot de passe</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="password"
+                type="password"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <!-- voir la maj pour la donnee firstname -->
+              <input
+                v-model="mail"
+                type="email"
+                class="form-control m1-sm-2 mr-sm-4 my-2"
+                required
+              />
+            </div>
+            <div class="ml-auto text-right">
+              <button
+                type="submit"
+                class="btn btn-primary my-2"
+                @click="CreateUser()"
+              >
+                Ajouter
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card mt-5">
+        <div class="card-header">Utilisateurs</div>
+        <div id="line-decoration"></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th>Pseudo</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="user in users" v-bind:key="user.usr_id">
+                  <tr>
+                    <template v-if="editId == user.usr_id">
+                      <td><input v-model="editUser.id" type="text" /></td>
+
+                      <td>
+                        <input v-model="editUser.pseudo" type="text" />
+                      </td>
+                      <td>
+                        <input v-model="editUser.firstname" type="text" />
+                      </td>
+                      <td>
+                        <input v-model="editUser.lastname" type="text" />
+                      </td>
+                      <td><input v-model="editUser.role" type="text" /></td>
+                      <td>
+                        <input v-model="editUser.password" type="text" />
+                      </td>
+                      <td>
+                        <button v-on:click="updateUser(user.usr_id)">
+                          valider
+                        </button>
+                      </td>
+
+                      <!-- <td>
+                      <span class="icon"
+                        ><i @click="onCancel" class="fa fa-ban"></i
+                      ></span>
+                    </td> -->
+                    </template>
+                    <template v-else>
+                      <td>{{ user.usr_id }}</td>
+                      <td>{{ user.pseudo }}</td>
+                      <td>{{ user.firstname }}</td>
+                      <td>{{ user.lastname }}</td>
+                      <td>{{ user.roles }}</td>
+                      <td>
+                        <button v-on:click="editUserClick(user)">
+                          <i class="fa fa-pencil"></i>Modifier
+                        </button>
+
+                        <!-- detail ajout component VueUser  -->
+                        <!-- <router-link 
+                    :to="{
+                      name:'ProductPage', 
+                      params:{id: product.id}
+                    }" 
+                    class="icon"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </router-link> -->
+                      </td>
+                      <td>
+                        <button v-on:click="deleteUser(user.usr_id)">
+                          Supprimer
+                        </button>
+                      </td>
+                    </template>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <br />
+    </div>
+  </div>
+</template>
+
+<script>
+async function getUsers() {
+  try {
+    let users = await fetch("/api/users/", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        return response;
+      });
+
+    console.log("RESPONSE : ", users);
+    return users;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export default {
+  data() {
+    return {
+      users: [],
+      editId: "",
+      editUser: [
+        {
+          id: "",
+          pseudo: "",
+          firstname: "",
+          lastname: "",
+          password: "",
+          role: "",
+          mail: "",
+        },
+      ],
+      roles: [
+        { id: 0, role: "Super Administrateur" },
+        { id: 1, role: "Administrateur" },
+        { id: 2, role: "Moderateur" },
+        { id: 3, role: "Citoyen" },
+      ],
+    };
+  },
+
+  methods: {
+    async CreateUser() {
+      // eslint-disable-next-line no-unused-vars
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({
+          pseudo: this.pseudo,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          roles: "Citoyen",
+          mail: this.mail,
+          password: this.password,
+        }),
+      });
+      this.pseudo = "";
+      this.firstname = "";
+      this.lastname = "";
+      this.mail = "";
+      this.password = "";
+      this.users = await getUsers();
+    },
+
+    editUserClick(user) {
+      console.log("edit user : " + user.usr_id);
+
+      this.editId = user.usr_id;
+      this.editUser.id = user.usr_id;
+      this.editUser.pseudo = user.pseudo;
+      this.editUser.firstname = user.firstname;
+      this.editUser.lastname = user.lastname;
+      this.editUser.role = user.roles;
+      this.editUser.mail = user.mail;
+      this.editUser.password = user.password;
+      console.log("edit id : " + this.editId);
+    },
+
+    async updateUser(id) {
+      console.log(id);
+
+      // eslint-disable-next-line no-unused-vars
+      const res = await fetch("/api/users/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({
+          pseudo: this.editUser.pseudo,
+          firstname: this.editUser.firstname,
+          lastname: this.editUser.lastname,
+          roles: this.editUser.role,
+          mail: this.editUser.mail,
+          password: this.editUser.password,
+        }),
+      });
+      this.editId = "";
+      this.editUser.pseudo = "";
+      this.editUser.firstname = "";
+      this.editUser.lastname = "";
+      this.editUser.role = "";
+      this.editUser.password = "";
+      this.editUser.mail = "";
+      this.users = await getUsers();
+    },
+
+    async deleteUser(id) {
+      // eslint-disable-next-line no-unused-vars
+      const res = await fetch("/api/users/" + id, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      this.users = await getUsers();
+    },
+  },
+
+  async mounted() {
+    this.users = await getUsers();
+  },
+};
+</script>
+
+<style scoped src="./style.css"></style>

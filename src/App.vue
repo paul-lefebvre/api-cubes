@@ -16,9 +16,12 @@ export default {
 
 <style>
   body {
+    padding: 0;
+    margin: 0;
     overflow: hidden;
   }
-  #app {
+  html {
+    padding: 0;
     margin: 0;
     height: 100% !important;
     width: 100% !important;
