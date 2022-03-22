@@ -5,6 +5,7 @@ import findOne from './findOne.js';
 import findAll from './findAll.js';
 import logIn from './logIn.js';
 import logout from './logout.js';
+import upload from './upload.js';
 
 // IMPORT/EXPORT CUSTOM FCT HERE
 
@@ -16,6 +17,7 @@ const controller = {
   findAll,
   logIn,
   logout,
+  upload,
 }
 
 export default controller;
