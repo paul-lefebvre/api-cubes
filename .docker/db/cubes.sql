@@ -332,14 +332,14 @@ REL_ID
 /*==============================================================*/
 /* Index : REL_FK                                            */
 /*==============================================================*/
-create unique index REL_FK on lfc.RELATION (
+create index REL_FK on lfc.RELATION (
 FOLLOWER_ID
 );
 
 /*==============================================================*/
 /* Index : REL2_FK                                            */
 /*==============================================================*/
-create unique index REL2_FK on lfc.RELATION (
+create index REL2_FK on lfc.RELATION (
 FOLLOWED_ID
 );
 
@@ -649,10 +649,10 @@ AVATAR_IMG           VARCHAR(900)         null,
 constraint PK_USERS primary key (USR_ID)
 );
 
-INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (1,'IronMan','Morgan','Stark','0232356564','mstark@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin.png');
-INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (2,'CaptainAmerica','Steeve','Rogers','0232356564','srogers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
-INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (3,'Hulk','Bruce','Banner','0232356564','bbanner@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
-INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (4,'Dr Strange','Stephen','Strange','0232356564','sstrange@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (1,'IronMan','Morgan','Stark','0232356564','mstark@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (2,'CaptainAmerica','Steeve','Rogers','0232356564','srogers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (3,'Hulk','Bruce','Banner','0232356564','bbanner@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (4,'Dr Strange','Stephen','Strange','0232356564','sstrange@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','unknown.png');
 
 /*==============================================================*/
 /* Index : USERS_PK                                             */
