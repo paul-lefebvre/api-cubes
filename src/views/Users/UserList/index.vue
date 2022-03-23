@@ -2,7 +2,7 @@
   <div class="userList">
     <div>
       Rechercher :
-      <img src="@/assets/icons/iconSearch.svg" width="15" height="15" />
+      <!-- <img src="@/assets/icons/iconSearch.svg" width="15" height="15" /> -->
       <input
         type="search"
         v-model="searchKey"
