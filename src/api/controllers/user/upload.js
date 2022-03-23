@@ -16,7 +16,7 @@ export default async function (req, res) {
      const user =  await User.findByPk(id);
 
 
-    user.avatar_img = req.file.path;
+    user.avatar_img = req.file.filename;
 
     await user.save({fields: ['avatar_img']})
 
