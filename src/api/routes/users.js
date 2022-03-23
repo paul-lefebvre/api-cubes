@@ -48,7 +48,7 @@ export default (app) => {
 
   // jwt
   router.get("*", checkUser);
-  router.post("/upload", upload.single('image'), (req, res) =>{
+  router.post("/upload", upload.single('file'), (req, res) =>{
     //console.log(req.file);
     res.send("c'est bon putain")
   });
@@ -95,7 +95,7 @@ router.get("/logout", UserController.logout);
    *              description: Bad request
    */
   router.get("/:id", UserController.findOne);
-  router.post("/:id/upload", upload.single('image'), UserController.upload);
+  router.post("/:id/upload", upload.single('file'), UserController.upload);
 
   /**
    * @swagger
