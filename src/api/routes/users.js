@@ -1,7 +1,23 @@
 import UserController from "../controllers/user/index.js";
 import express from "express";
 import { authenticateToken, checkUser } from "../modules/MiddleWare.js";
+import multer from "multer";
 var router = express.Router();
+
+
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, ("./public/upload/images/avatar/"))
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "__" + file.originalname )
+  }
+});
+
+const upload = multer({ storage: storage});
+
 
 /**
  * @swagger
@@ -32,10 +48,14 @@ export default (app) => {
 
   // jwt
   router.get("*", checkUser);
+  router.post("/upload", upload.single('image'), (req, res) =>{
+    //console.log(req.file);
+    res.send("c'est bon putain")
+  });
   router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
-  router.get("/logout", UserController.logout);
+router.get("/logout", UserController.logout);
 
   /**
    * @swagger
@@ -75,6 +95,7 @@ export default (app) => {
    *              description: Bad request
    */
   router.get("/:id", UserController.findOne);
+  router.post("/:id/upload", upload.single('image'), UserController.upload);
 
   /**
    * @swagger
@@ -167,6 +188,52 @@ export default (app) => {
    *              description: Bad request
    */
   router.delete("/:id", UserController.deleteOne);
+
+  /**
+   * @swagger
+   *  /api/users/follow/{id}:
+   *      delete:
+   *          tags: [Users]
+   *          summary: Use to delete an user
+   *          description: Use to delete an user
+   *      parameters:
+   *          - name: ID
+   *            in: params
+   *            description: ID of the user
+   *            required: true
+   *            schema:
+   *              type: integer
+   *              format: integer
+   *      responses:
+   *          '200':
+   *              description: Successfully follow the user
+   *          '500':
+   *              description: Bad request
+   */
+  router.patch("/follow/:id", UserController.follow);
+
+  /**
+   * @swagger
+   *  /api/users/unfollow/{id}:
+   *      delete:
+   *          tags: [Users]
+   *          summary: Use to delete an user
+   *          description: Use to delete an user
+   *      parameters:
+   *          - name: ID
+   *            in: params
+   *            description: ID of the user
+   *            required: true
+   *            schema:
+   *              type: integer
+   *              format: integer
+   *      responses:
+   *          '200':
+   *              description: Successfully follow the user
+   *          '500':
+   *              description: Bad request
+   */
+  router.patch("/unfollow/:id", UserController.unfollow);
 
   app.use("/api/users", router);
 };

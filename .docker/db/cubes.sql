@@ -165,6 +165,12 @@ CREATED_AT           DATE                 null,
 constraint PK_CATEGORIES primary key (CAT_ID)
 );
 
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (1,'Jardinage','Venez cultiver votre potager','img/jardin.png',18,'2022-03-21');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (2,'Bricolage','Participer aux sessions tuto avec notre Mr Bricolage','img/brico.png',12,'2022-02-21');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (3,'Decoration','Apprenez à dynamiser votre intérieur','img/deco.png',12,'2022-03-12');
+INSERT INTO lfc.categories (CAT_ID,TITLE,DESCRIPTION,IMG,NB_POSTS,CREATED_AT) VALUES (4,'Location','Louer tout ce que vous souhaitez','img/loc.png',8,'2022-03-14');
+
+
 /*==============================================================*/
 /* Index : CATEGORIES_PK                                        */
 /*==============================================================*/
@@ -186,6 +192,7 @@ IS_SIGNALED          INT4                 null,
 CREATED_AT           DATE                 null,
 constraint PK_COMMENTS primary key (COM_ID)
 );
+
 
 /*==============================================================*/
 /* Index : COMMENTS_PK                                          */
@@ -305,35 +312,38 @@ GRP_ID
 );
 
 /*==============================================================*/
-/* Table : LIER                                                 */
+/* Table : RELATION                                                */
 /*==============================================================*/
-create table lfc.LIER (
-USR_ID               INT4                 not null,
-REL_ID               INT4                 not null,
-constraint PK_LIER primary key (USR_ID, REL_ID)
+CREATE TABLE lfc.RELATION (
+	REL_ID 		SERIAL 			NOT NULL,
+	FOLLOWER_ID 	INT4 			NOT NULL,
+	FOLLOWED_ID 	INT4 			NOT NULL,
+	CREATED_AT      DATE            null,
+	constraint PK_REL primary key (REL_ID)
 );
 
 /*==============================================================*/
-/* Index : LIER_PK                                              */
+/* Index : REL_PK                                             */
 /*==============================================================*/
-create unique index LIER_PK on lfc.LIER (
-USR_ID,
+create unique index REL_PK on lfc.RELATION (
 REL_ID
 );
 
 /*==============================================================*/
-/* Index : LIER_FK                                              */
+/* Index : REL_FK                                            */
 /*==============================================================*/
-create  index LIER_FK on lfc.LIER (
-USR_ID
+create unique index REL_FK on lfc.RELATION (
+FOLLOWER_ID
 );
 
 /*==============================================================*/
-/* Index : LIER2_FK                                             */
+/* Index : REL2_FK                                            */
 /*==============================================================*/
-create  index LIER2_FK on lfc.LIER (
-REL_ID
+create unique index REL2_FK on lfc.RELATION (
+FOLLOWED_ID
 );
+
+
 
 /*==============================================================*/
 /* Table : LIKES                                                */
@@ -483,23 +493,6 @@ EVT_ID
 );
 
 /*==============================================================*/
-/* Table : RELATIONS                                            */
-/*==============================================================*/
-create table lfc.RELATIONS (
-REL_ID               SERIAL               not null,
-TYPE                 VARCHAR(50)          null,
-CREATED_AT           DATE                 null,
-constraint PK_RELATIONS primary key (REL_ID)
-);
-
-/*==============================================================*/
-/* Index : RELATIONS_PK                                         */
-/*==============================================================*/
-create unique index RELATIONS_PK on lfc.RELATIONS (
-REL_ID
-);
-
-/*==============================================================*/
 /* Table : RESPONSES                                            */
 /*==============================================================*/
 create table lfc.RESPONSES (
@@ -540,6 +533,11 @@ NB_SHARES            INT4                 null,
 CREATED_AT           DATE                 null,
 constraint PK_RESSOURCES primary key (RES_ID)
 );
+
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (1,1,1,'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',0,47,25,18,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (2,2,2,'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which ...',0,21,32,10,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (3,3,3,'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from ...',0,74,13,28,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (4,4,4,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',0,2,34,12,'2022-03-21');
 
 /*==============================================================*/
 /* Index : RESSOURCES_PK                                        */
@@ -651,6 +649,11 @@ AVATAR_IMG           VARCHAR(900)         null,
 constraint PK_USERS primary key (USR_ID)
 );
 
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (1,'IronMan','Morgan','Stark','0232356564','mstark@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (2,'CaptainAmerica','Steeve','Rogers','0232356564','srogers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (3,'Hulk','Bruce','Banner','0232356564','bbanner@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (4,'Dr Strange','Stephen','Strange','0232356564','sstrange@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Blabla','/img/machin2.png');
+
 /*==============================================================*/
 /* Index : USERS_PK                                             */
 /*==============================================================*/
@@ -702,14 +705,14 @@ alter table lfc.DISCUTER
       references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc.LIER
-   add constraint FK_LIER_LIER_USERS foreign key (USR_ID)
+alter table lfc.RELATION
+   add constraint FK_REL_USERS foreign key (FOLLOWER_ID)
       references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
-alter table lfc.LIER
-   add constraint FK_LIER_LIER2_RELATION foreign key (REL_ID)
-      references lfc.RELATIONS (REL_ID)
+alter table lfc.RELATION
+   add constraint FK_REL_REL_USERS foreign key (FOLLOWED_ID)
+      references lfc.USERS (USR_ID)
       on delete restrict on update restrict;
 
 alter table lfc.LIKES

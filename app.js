@@ -17,6 +17,8 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerJson = require("./swagger.json");
 const app = express();
 const jwt = require("jsonwebtoken");
+//const path = require("path");
+const multer = require("multer");
 
 // SETUP APP
 app.use(cors());
@@ -27,6 +29,7 @@ app.use(logger("dev"));
 // IMPORT ASSETS
 app.use("/dist", express.static("./dist"));
 app.use("/public", express.static(__dirname + "/public"));
+
 
 // OPTIONS
 const vueOptions = {

@@ -3,7 +3,7 @@ import model from "../../models/index.js";
 const { User } = model;
 
 export default async function (req, res) {
-  const { pseudo, firstname, lastname, roles, mail, password } = req.body;
+  const { pseudo, firstname, lastname, mail, password, roles } = req.body;
   try {
     const user = await User.findOne({ where: { [Op.or]: [{ mail }] } });
     if (user) {
@@ -14,9 +14,9 @@ export default async function (req, res) {
       pseudo,
       firstname,
       lastname,
-      roles,
       mail,
       password,
+      roles,
     });
     return res.status(201).send({ message: "Account created successfully" });
   } catch (e) {

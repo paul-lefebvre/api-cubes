@@ -1,40 +1,41 @@
-const { Model, Deferrable } = require('sequelize');
-
-import User from './User.cjs';
-import Category from './Category.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Ressource extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
-      // define association here
+		Ressource.hasOne(models.User, {
+			as: 'owner',
+			foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		Ressource.hasOne(models.Category, {
+			as: 'category',
+			foreignKey: 'cat_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		Ressource.belongsTo(models.Media, {
+			as: "media",
+			foreignKey: "res_id",
+		});
     }
   }
+	
   Ressource.init({
     res_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
     },
     usr_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     cat_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Category,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     answers: DataTypes.STRING,
     is_signaled: DataTypes.INTEGER,
