@@ -1,4 +1,4 @@
-import {Op} from "sequelize";
+//import {Op} from "sequelize";
 import model from "../../models/index.js";
 
 const {User} = model;

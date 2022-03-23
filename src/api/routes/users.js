@@ -48,10 +48,10 @@ export default (app) => {
 
   // jwt
   router.get("*", checkUser);
-  router.post("/upload", upload.single('file'), (req, res) =>{
+  //router.post("/upload", upload.single('file'), (req, res) =>{
     //console.log(req.file);
-    res.send("c'est bon putain")
-  });
+  //  res.send("c'est bon putain")
+  //});
   router.get("/me", authenticateToken, (req, res) => {
     res.send(req.id);
   });
