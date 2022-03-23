@@ -4,7 +4,7 @@ const { User } = model;
 
 export default async function (req, res) {
   const { pseudo, firstname, lastname, mail, password, roles } = req.body;
-  const avatar_img = ("public/upload/images/avatar/unknown.png");
+  const avatar_img = "unknown.png";
   try {
     const user = await User.findOne({ where: { [Op.or]: [{ mail }] } });
     if (user) {
