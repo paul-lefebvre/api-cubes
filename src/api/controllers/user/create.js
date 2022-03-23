@@ -4,6 +4,7 @@ const { User } = model;
 
 export default async function (req, res) {
   const { pseudo, firstname, lastname, mail, password, roles } = req.body;
+  const avatar_img = ("public/upload/images/avatar/unknown.png");
   try {
     const user = await User.findOne({ where: { [Op.or]: [{ mail }] } });
     if (user) {
@@ -17,6 +18,7 @@ export default async function (req, res) {
       mail,
       password,
       roles,
+      avatar_img,
     });
     return res.status(201).send({ message: "Account created successfully" });
   } catch (e) {
