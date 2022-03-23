@@ -4,7 +4,10 @@ const { User } = model;
 
 export default async function (req, res) {
 	User.findAll({
-		include: 'relations'
+		include: [
+			'relations',
+			'likes',
+		]
 	})
     .then(data => {
       res.send(data);

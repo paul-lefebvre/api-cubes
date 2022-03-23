@@ -1,6 +1,4 @@
-const { Model, Deferrable } = require('sequelize');
-
-import User from './User.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Like extends Model {
@@ -10,24 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-/* 		Like.hasOne(models.User, {
-			foreignKey: 'usr_id'
-		}); */
+		Like.belongsTo(models.User,{
+			as: 'likes',
+			foreignKey: 'usr_id',
+		});
     }
   }
   Like.init({
     lik_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true,
     },
     usr_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     entity_id: DataTypes.INTEGER,
     is_post: DataTypes.INTEGER,

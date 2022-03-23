@@ -3,12 +3,11 @@ import model from '../../models/index.js';
 const { Survey } = model;
 
 export default async function (req, res) {
-    
-    const title = req.query.title;
-    
-    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-
-    Survey.findAll({ where: condition })
+	Survey.findAll({
+		include: [
+			'surveyOwner',
+		]
+	})
     .then(data => {
       res.send(data);
     })

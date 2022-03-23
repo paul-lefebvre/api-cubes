@@ -16,8 +16,20 @@ module.exports = (sequelize, DataTypes) => {
 			hooks: true
 		});
 		
+		User.hasMany(models.Like, {
+			as: 'likes',
+			foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		
 		User.belongsTo(models.Ressource, {
-			as: "owner",
+			as: "resOwner",
+			foreignKey: "usr_id",
+		});
+		
+		User.belongsTo(models.Survey, {
+			as: "surveyOwner",
 			foreignKey: "usr_id",
 		});
 		

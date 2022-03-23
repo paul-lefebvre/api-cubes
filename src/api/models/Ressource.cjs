@@ -3,9 +3,13 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Ressource extends Model {
 
-    static associate(models) {
+	static associate(models) {
+		Ressource.hasMany(models.Comment,{
+			as: 'comments',
+			foreignKey: 'res_id'
+		});
 		Ressource.hasOne(models.User, {
-			as: 'owner',
+			as: 'resOwner',
 			foreignKey: 'usr_id',
 			onDelete: 'cascade',
 			hooks: true
