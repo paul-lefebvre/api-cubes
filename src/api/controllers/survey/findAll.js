@@ -6,6 +6,7 @@ export default async function (req, res) {
 	Survey.findAll({
 		include: [
 			'surveyOwner',
+			'surveyResponses',
 		]
 	})
     .then(data => {

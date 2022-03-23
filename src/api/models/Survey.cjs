@@ -9,12 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
 		// define association here
+		Survey.hasMany(models.Response,{
+			as: 'surveyResponses',
+			foreignKey: 'srv_id',
+			onDelete: 'cascade',
+			hooks: true
+		})
+		
 		Survey.hasOne(models.User,{
 			as: 'surveyOwner',
 			foreignKey: 'usr_id',
 			onDelete: 'cascade',
 			hooks: true
 		})
+		
     }
   }
   Survey.init({

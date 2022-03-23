@@ -1,6 +1,4 @@
-const { Model, Deferrable } = require('sequelize');
-
-import Survey from './Survey.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Response extends Model {
@@ -11,21 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+		Response.belongsTo(models.Survey,{
+			as: 'surveyResponses',
+			through: models.Response,
+			foreignKey: 'rep_id',
+		})
     }
   }
   Response.init({
     rep_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
     },
     srv_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Survey,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     answers: DataTypes.STRING,
     usr_answer_id: DataTypes.INTEGER,
