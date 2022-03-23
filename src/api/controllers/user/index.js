@@ -20,9 +20,9 @@ const controller = {
   findAll,
   logIn,
   logout,
+  upload,
   follow,
   unfollow,
-  upload,
 };
 
 
