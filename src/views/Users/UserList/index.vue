@@ -8,8 +8,7 @@
         v-model="searchKey"
         placeholder="recherche utilisateur"
       />
-      <br /><br />
-      <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
+      <br /><br /> 
       <div class="form-inline">
         Filtres : <br />
         <div v-for="role in roles" :key="role.id">
@@ -23,11 +22,14 @@
         </div>
       </div>
       <br /><br />
-
+      <!-- <router-link to="/create-user" tag="button">Créer un compte</router-link> -->
+      
+<!-- creation utilisateur -->
       <div class="card">
         <h1>Ajouter un nouvel utilisateur</h1>
         <div class="card-body">
-          <form class="form-inline" v-on:submit.prevent="onSubmit">
+          <form class="form-inline" >
+           
             <div class="form-group">
               <label>Pseudo </label>
 
@@ -36,13 +38,13 @@
             <div class="form-group">
               <label>Nom </label>
 
-              <input v-model="firstname" type="text" required />
+              <input v-model="lastname" type="text" required />
             </div>
 
             <div class="form-group">
               <label>Prenom </label>
 
-              <input v-model="lastname" type="text" required />
+              <input v-model="firstname" type="text" required />
             </div>
 
             <div class="form-group">
