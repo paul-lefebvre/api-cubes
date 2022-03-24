@@ -193,6 +193,17 @@ CREATED_AT           DATE                 null,
 constraint PK_COMMENTS primary key (COM_ID)
 );
 
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (1,1,'Tu auras l ambition de ton père pour toi aussi améliorer notre société et notre vie courante',1,1,1,1,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (2,2,'Tu as eu tout à fait raison. Tu en as déjà trop fait pour cette socété qui ne pense qu à faire la guerre',2,2,2,2,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (3,3,'Jamais simple ...',3,3,3,3,'2022-03-18');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (4,4,'Bravo à toi !',4,4,4,4,'2022-03-19');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (5,1,'Ces mots sont un véritable hommage à ton père. On pense à lui ...',1,1,1,1,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (6,2,'Les regrets ne servent à rien. Tu as consacré assez de temps pour nous. Maintenant profite de ta nouvelle vie et de ta nouvelle famille',2,2,2,2,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (7,4,'Une véritable prouesse !!',4,4,4,4,'2022-03-16');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (8,4,'Incroyable réalisation',4,4,4,4,'2022-03-15');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (9,5,'Y pense toujours',4,4,4,4,'2022-03-16');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (10,6,'Parfois on ne peut pas réussir',4,4,4,4,'2022-03-17');
+
 
 /*==============================================================*/
 /* Index : COMMENTS_PK                                          */
@@ -281,6 +292,11 @@ CREATED_AT           DATE                 null,
 constraint PK_EVENTS primary key (EVT_ID)
 );
 
+INSERT INTO lfc.events (EVT_ID,OWNER,TITLE,DESCRIPTION,NB_USERS,MAX_USERS,ACTUAL_JACKPOT,MAX_JACKPOT,LAT,LONG,START_AT,CREATED_AT) VALUES (1,1,'Jardin','ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',5,10,1.2,1.3,123135,123135,'2022-03-21','2022-03-21');
+INSERT INTO lfc.events (EVT_ID,OWNER,TITLE,DESCRIPTION,NB_USERS,MAX_USERS,ACTUAL_JACKPOT,MAX_JACKPOT,LAT,LONG,START_AT,CREATED_AT) VALUES (2,2,'Brico','ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',5,10,1.2,1.3,123135,123135,'2022-03-21','2022-03-21');
+INSERT INTO lfc.events (EVT_ID,OWNER,TITLE,DESCRIPTION,NB_USERS,MAX_USERS,ACTUAL_JACKPOT,MAX_JACKPOT,LAT,LONG,START_AT,CREATED_AT) VALUES (3,3,'Déco','ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',5,10,1.2,1.3,123135,123135,'2022-03-21','2022-03-21');
+INSERT INTO lfc.events (EVT_ID,OWNER,TITLE,DESCRIPTION,NB_USERS,MAX_USERS,ACTUAL_JACKPOT,MAX_JACKPOT,LAT,LONG,START_AT,CREATED_AT) VALUES (4,4,'Menage','ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',5,10,1.2,1.3,123135,123135,'2022-03-21','2022-03-21');
+
 /*==============================================================*/
 /* Index : EVENTS_PK                                            */
 /*==============================================================*/
@@ -303,6 +319,10 @@ EXPIRE_CODE_AT       DATE                 null,
 CREATED_AT           DATE                 null,
 constraint PK_GROUPS primary key (GRP_ID)
 );
+INSERT INTO lfc.groups (GRP_ID,OWNER,NAME,NB_USERS,IS_PRIVATE,DESCRIPTION,INVITE_CODE,EXPIRE_CODE_AT,CREATED_AT) VALUES (1,1,'Jardin',18,1,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','bonjour','2022-05-26','2022-03-21');
+INSERT INTO lfc.groups (GRP_ID,OWNER,NAME,NB_USERS,IS_PRIVATE,DESCRIPTION,INVITE_CODE,EXPIRE_CODE_AT,CREATED_AT) VALUES (2,2,'Brico',36,1,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','bonjour','2022-05-26','2022-03-21');
+INSERT INTO lfc.groups (GRP_ID,OWNER,NAME,NB_USERS,IS_PRIVATE,DESCRIPTION,INVITE_CODE,EXPIRE_CODE_AT,CREATED_AT) VALUES (3,3,'Deco',22,1,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','bonjour','2022-05-26','2022-03-21');
+INSERT INTO lfc.groups (GRP_ID,OWNER,NAME,NB_USERS,IS_PRIVATE,DESCRIPTION,INVITE_CODE,EXPIRE_CODE_AT,CREATED_AT) VALUES (4,4,'Menage',45,1,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur','bonjour','2022-05-26','2022-03-21');
 
 /*==============================================================*/
 /* Index : GROUPS_PK                                            */
@@ -321,6 +341,29 @@ CREATE TABLE lfc.RELATION (
 	CREATED_AT      DATE            null,
 	constraint PK_REL primary key (REL_ID)
 );
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (1,1,2,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (2,1,3,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (3,1,7,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (4,2,4,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (5,2,5,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (6,2,6,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (7,3,2,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (8,3,4,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (9,4,2,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (10,4,1,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (11,4,5,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (12,5,6,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (13,5,2,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (14,6,5,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (15,6,9,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (16,7,4,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (17,7,6,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (18,7,1,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (19,8,3,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (20,8,6,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (21,9,1,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (22,9,4,'2022-03-21');
+INSERT INTO lfc.relation (REL_ID,FOLLOWER_ID,FOLLOWED_ID,CREATED_AT) VALUES (23,9,5,'2022-03-21');
 
 /*==============================================================*/
 /* Index : REL_PK                                             */
@@ -535,9 +578,15 @@ constraint PK_RESSOURCES primary key (RES_ID)
 );
 
 INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (1,1,1,'Ma petite vie de fille de IronMan : voir tout ce que mon père à réaliser pour sauver le monde entier. Thanos aurait dû bien se tenir !',0,47,25,18,'2022-03-21');
-INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (2,2,2,'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which ...',0,21,32,10,'2022-03-21');
-INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (3,3,3,'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from ...',0,74,13,28,'2022-03-21');
-INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (4,4,4,'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',0,2,34,12,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (2,2,2,'En quittant la vie des avangers j ai remonté le temps pour retrouver mon amour perdu. Nous avons eu beaucoup de temps à rattraper ensemble. Je ne regrette rien. Sauver le monde n est pas de tout repos...',0,21,32,10,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (3,3,3,'Etre traqué continuellement ne rend pas la vie facile. Je suis parti. Loin de toute civilisation. Je suis maintenant en pleine forêt, seul, sans rien d autre que la faune sauvage pour me tenir compagnie.',0,74,13,28,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (4,4,4,'Le controle du temps est facile lorsque les bons outils sont là pour vous aider. Il ne faut simplement pas en abuser. Sinon des distorsions temporelles peuvent se créer et peuvent rendre le retour en arrière impossible',0,2,34,12,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (5,5,1,'Suis toujours la petite araignée sympa du quartier. Tony me manque. Mais je reste à l affût de tous méfaits qui peuvent arriver. Les Avengers seront toujours là pour protéger la planète dans tous les cas.',0,2,34,12,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (6,6,2,'Je suis le résultat d une expérience scientifique. Ce fait me rend quasi invincible face à des ennemis dôtés de grands pouvoirs. Hélas je n ai pas pu sauver Vision. Il me manque terriblement. Mais l entrainement avec toute l equipe m apporte du réconfort.',0,2,34,12,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (7,7,3,'Tous les Gardiens de la Galaxie sont avec moi pour vous souhaiter un bon retour à la normal. Amusez-vous, retrouvez-vous tous ensemble pour profiter de la vie !!!',0,2,34,12,'2022-03-21');
+INSERT INTO lfc.ressources (RES_ID,USR_ID,CAT_ID,ANSWERS,IS_SIGNALED,NB_VIEWS,NB_LIKES,NB_SHARES,CREATED_AT) VALUES (8,8,4,'Vous pensez bien que ce n est pas Natasha qui publie ce post. Ils ont fait un film sur elle et sa famille. Je ne connaissais pas sa sœur. Elle est aussi triste que moi. Nous partageons énormément de souvenirs...',0,2,34,12,'2022-03-21');
+
+
 
 /*==============================================================*/
 /* Index : RESSOURCES_PK                                        */
@@ -653,6 +702,12 @@ INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLE
 INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (2,'CaptainAmerica','Steeve','Rogers','0232356564','srogers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Suis un très vieux bonhomme','unknown.png');
 INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (3,'Hulk','Bruce','Banner','0232356564','bbanner@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Peux devenir tout vert','unknown.png');
 INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (4,'Dr Strange','Stephen','Strange','0232356564','sstrange@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Adore contrôler le temps','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (5,'Spider-Man','Peter','Parker','0232356564','pparker@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Adore contrôler le temps','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (6,'Wanda Maximoff','Wanda','Maximoff','0232356564','wmaximoff@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Aurait pu sauver tout le monde mais non','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (7,'Star Lord','Peter','Quill','0232356564','pquill@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Contribue à sauver tout le monde','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (8,'Black Widow','Natasha','Romanoff','0232356564','nromanoff@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Aime tuer les gens et amoureuse de Hulk','unknown.png');
+INSERT INTO lfc.users (USR_ID, PSEUDO, FIRSTNAME,LASTNAME,TEL,MAIL,PASSWORD,ROLES,STATUS,CREATED_AT,LAST_CON,RESET_CODE,BIRTH_DATE,GENDER,IS_ONLINE,ACTUAL_LAT,ACTUAL_LONG,BIO,AVATAR_IMG) VALUES (9,'Captain Marvel','Carol','Danvers','0232356564','cdanvers@gmail.com','12345','Citoyen',1,'2022-03-21','2022-03-21','azerty','10-05-1990',1,1,123135,45646,'Super badass','unknown.png');
+
 
 /*==============================================================*/
 /* Index : USERS_PK                                             */
