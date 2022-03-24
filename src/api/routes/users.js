@@ -114,7 +114,7 @@ router.get("/logout", UserController.logout);
    *          '500':
    *              description: Bad request
    */
-  //router.get("/:id", UserController.findOne);
+  router.get("/:id", UserController.findOne);
   router.post("/:id/upload", upload.single('file'), UserController.upload);
 
   /**
