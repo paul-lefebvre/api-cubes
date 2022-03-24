@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: 'follower_id',
 			onDelete: 'cascade',
 			hooks: true
+    });
+      
+		User.hasMany(models.Participer, {
+			as: 'participants',
+      foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
 		});
 		
 		User.hasMany(models.Like, {
