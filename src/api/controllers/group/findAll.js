@@ -3,19 +3,18 @@ import model from '../../models/index.js';
 const { Group } = model;
 
 export default async function (req, res) {
-    
-    const subject = req.query.subject;
-    
-    var condition = subject ? { subject: { [Op.like]: `%${subject}%` } } : null;
 
-    Group.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Group."
-      });
+  Group.findAll({
+    include: [
+      'adherants',
+    ]
+  })
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving Group."
     });
+  });
 }
