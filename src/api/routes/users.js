@@ -56,7 +56,28 @@ export default (app) => {
     res.send(req.id);
   });
 router.get("/logout", UserController.logout);
-
+  /**
+   * @swagger
+   * /api/users/login
+   *      post
+   *          tags:
+   *          summary: Use to login acount
+   *          descritpion : Use to login acount
+   *      parametres:
+   *          -name: Id
+   *          in: body
+   *          description: ID of the user
+   *          required: true
+   *          schema:
+   *              type: integer
+   *              format: integer
+   *      responses:
+   *          '200':
+   *              description: Successfully login the user
+   *          '500':
+   *              description: Bad request
+   */
+  router.post("/login", UserController.logIn);
   /**
    * @swagger
    *  /api/users/:
@@ -71,7 +92,6 @@ router.get("/logout", UserController.logout);
    *              description: Failed to query for users
    *
    */
-  router.get("/:id", UserController.findOne);
 
   /**
    * @swagger
@@ -120,28 +140,7 @@ router.get("/logout", UserController.logout);
    */
   router.post("/", UserController.create);
 
-  /**
-   * @swagger
-   * /api/users/login
-   *      post
-   *          tags:
-   *          summary: Use to login acount
-   *          descritpion : Use to login acount
-   *      parametres:
-   *          -name: Id
-   *          in: body
-   *          description: ID of the user
-   *          required: true
-   *          schema:
-   *              type: integer
-   *              format: integer
-   *      responses:
-   *          '200':
-   *              description: Successfully login the user
-   *          '500':
-   *              description: Bad request
-   */
-  router.post("/login", UserController.logIn);
+
 
   /**
    * @swagger
