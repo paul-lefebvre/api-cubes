@@ -14,10 +14,43 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: 'follower_id',
 			onDelete: 'cascade',
 			hooks: true
+    });
+      
+		User.hasMany(models.Participer, {
+			as: 'participants',
+      foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+    });
+      
+		User.hasMany(models.Adherer, {
+			as: 'adherants',
+      foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+    });
+      
+    User.hasMany(models.Discuter, {
+			as: 'contacts',
+      foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+		});
+		
+		User.hasMany(models.Like, {
+			as: 'likes',
+			foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
 		});
 		
 		User.belongsTo(models.Ressource, {
-			as: "owner",
+			as: "resOwner",
+			foreignKey: "usr_id",
+		});
+		
+		User.belongsTo(models.Survey, {
+			as: "surveyOwner",
 			foreignKey: "usr_id",
 		});
 		

@@ -1,6 +1,4 @@
-const { Model, Deferrable } = require('sequelize');
-
-import User from './User.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Survey extends Model {
@@ -10,22 +8,32 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+		// define association here
+		Survey.hasMany(models.Response,{
+			as: 'surveyResponses',
+			foreignKey: 'srv_id',
+			onDelete: 'cascade',
+			hooks: true
+		})
+		
+		Survey.hasOne(models.User,{
+			as: 'surveyOwner',
+			foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
+		})
+		
     }
   }
   Survey.init({
-    srv_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+	srv_id: {
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
     },
     usr_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     title: DataTypes.STRING,
     description: DataTypes.STRING,

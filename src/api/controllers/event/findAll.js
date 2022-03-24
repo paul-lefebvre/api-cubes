@@ -3,12 +3,12 @@ import model from '../../models/index.js';
 const { Event } = model;
 
 export default async function (req, res) {
-    
-    const subject = req.query.subject;
-    
-    var condition = subject ? { subject: { [Op.like]: `%${subject}%` } } : null;
 
-    Event.findAll({ where: condition })
+	Event.findAll({
+		include: [
+			'participants',
+		]
+	})
     .then(data => {
       res.send(data);
     })

@@ -1,6 +1,4 @@
-const { Model, Deferrable } = require('sequelize');
-
-import Ressource from './Ressource.cjs';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
@@ -10,27 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+		Comment.belongsTo(models.Ressource,{
+			as: 'comments',
+			foreignKey: 'res_id'
+		});
     }
   }
   Comment.init({
     com_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
     },
     res_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Ressource,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE
-      }
+		type: DataTypes.INTEGER,
+		allowNull: false,
     },
     answers: DataTypes.STRING,
     id_owner: DataTypes.INTEGER,
     is_response: DataTypes.INTEGER,
-    id_response_to_sr: DataTypes.INTEGER,
+    id_response_to_usr: DataTypes.INTEGER,
     is_signaled: DataTypes.INTEGER,
   }, {
     sequelize,

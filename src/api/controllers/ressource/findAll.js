@@ -6,9 +6,10 @@ export default async function (req, res) {
 
 	Ressource.findAll({
 		include: [
+			'resOwner',
 			'category',
-			'owner',
 			'media',
+			'comments',
 		],
 	})
     .then(data => {
