@@ -6,7 +6,13 @@ export default async function (req, res) {
 
   const id = req.params.id;
 
-  User.findByPk(id)
+  User.findByPk(id,{
+    include: [
+      'abonnements',
+      'publications',
+      'abonnes',
+    ]
+  })
     .then(data => {
       if (data) {
         res.send(data);

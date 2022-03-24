@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
 			as: "media",
 			foreignKey: "res_id",
 		});
+		Ressource.belongsTo(models.User, {
+			as: "publications",
+			foreignKey: "res_id",
+		});
     }
   }
 	

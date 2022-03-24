@@ -10,8 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
 		// define association here
 		User.hasMany(models.Relation, {
-			as: 'relations',
+			as: 'abonnements',
 			foreignKey: 'follower_id',
+			onDelete: 'cascade',
+			hooks: true
+    });
+      
+		User.hasMany(models.Relation, {
+			as: 'abonnes',
+			foreignKey: 'followed_id',
 			onDelete: 'cascade',
 			hooks: true
     });
@@ -42,6 +49,11 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: 'usr_id',
 			onDelete: 'cascade',
 			hooks: true
+		});
+
+    User.hasMany(models.Ressource, {
+			as: "publications",
+			foreignKey: "usr_id",
 		});
 		
 		User.belongsTo(models.Ressource, {
