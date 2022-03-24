@@ -5,7 +5,8 @@ const { User } = model;
 export default async function (req, res) {
 	User.findAll({
 		include: [
-			'relations',
+      'abonnements',
+      'abonnes',
 			'likes',
 		]
 	})

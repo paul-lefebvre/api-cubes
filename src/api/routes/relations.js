@@ -6,7 +6,7 @@ var router = express.Router();
 * @swagger
 * tags:
 *  name: Relations
-*  description: Model
+*  description: Association
 */
 export default (app) => {
 
