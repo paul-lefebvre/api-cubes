@@ -6,6 +6,7 @@ export default async function (req, res) {
 	User.findAll({
 		include: [
       'abonnements',
+      'publications',
       'abonnes',
 			'likes',
 		]

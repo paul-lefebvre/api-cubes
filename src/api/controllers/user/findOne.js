@@ -9,6 +9,7 @@ export default async function (req, res) {
   User.findByPk(id,{
     include: [
       'abonnements',
+      'publications',
       'abonnes',
     ]
   })

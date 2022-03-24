@@ -13,6 +13,7 @@ export default async function (req, res) {
       include: [
         'abonnements',
         'abonnes',
+        'publications',
       ]
     });
     

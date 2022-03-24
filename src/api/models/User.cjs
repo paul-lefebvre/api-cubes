@@ -50,6 +50,11 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'cascade',
 			hooks: true
 		});
+
+    User.hasMany(models.Ressource, {
+			as: "publications",
+			foreignKey: "usr_id",
+		});
 		
 		User.belongsTo(models.Ressource, {
 			as: "resOwner",
