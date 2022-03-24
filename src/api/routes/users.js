@@ -9,7 +9,7 @@ var router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, ("./public/upload/images/avatar/"))
+    cb(null, "public/upload/images/avatar")
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "__" + file.originalname )
@@ -94,7 +94,7 @@ router.get("/logout", UserController.logout);
    *          '500':
    *              description: Bad request
    */
-  router.get("/:id", UserController.findOne);
+  //router.get("/:id", UserController.findOne);
   router.post("/:id/upload", upload.single('file'), UserController.upload);
 
   /**
