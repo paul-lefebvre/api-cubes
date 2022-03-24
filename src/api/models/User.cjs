@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'usr_id',
 			onDelete: 'cascade',
 			hooks: true
+    });
+      
+    User.hasMany(models.Discuter, {
+			as: 'contacts',
+      foreignKey: 'usr_id',
+			onDelete: 'cascade',
+			hooks: true
 		});
 		
 		User.hasMany(models.Like, {
