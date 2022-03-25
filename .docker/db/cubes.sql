@@ -193,16 +193,16 @@ CREATED_AT           DATE                 null,
 constraint PK_COMMENTS primary key (COM_ID)
 );
 
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (1,1,'Tu auras l ambition de ton père pour toi aussi améliorer notre société et notre vie courante',1,1,1,1,'2022-03-21');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (2,2,'Tu as eu tout à fait raison. Tu en as déjà trop fait pour cette socété qui ne pense qu à faire la guerre',2,2,2,2,'2022-03-21');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (3,3,'Jamais simple ...',3,3,3,3,'2022-03-18');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (4,4,'Bravo à toi !',4,4,4,4,'2022-03-19');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (5,1,'Ces mots sont un véritable hommage à ton père. On pense à lui ...',1,1,1,1,'2022-03-21');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (6,2,'Les regrets ne servent à rien. Tu as consacré assez de temps pour nous. Maintenant profite de ta nouvelle vie et de ta nouvelle famille',2,2,2,2,'2022-03-21');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (7,4,'Une véritable prouesse !!',4,4,4,4,'2022-03-16');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (8,4,'Incroyable réalisation',4,4,4,4,'2022-03-15');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (9,5,'Y pense toujours',4,4,4,4,'2022-03-16');
-INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (10,6,'Parfois on ne peut pas réussir',4,4,4,4,'2022-03-17');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (1,1,'Tu auras l ambition de ton père pour toi aussi améliorer notre société et notre vie courante',6,1,1,1,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (2,2,'Tu as eu tout à fait raison. Tu en as déjà trop fait pour cette socété qui ne pense qu à faire la guerre',1,2,2,2,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (3,3,'Jamais simple ...',9,3,3,3,'2022-03-18');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (4,4,'Bravo à toi !',5,4,4,4,'2022-03-19');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (5,1,'Ces mots sont un véritable hommage à ton père. On pense à lui ...',3,1,1,1,'2022-03-21');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (6,2,'Les regrets ne servent à rien. Tu as consacré assez de temps pour nous. Maintenant profite de ta nouvelle vie et de ta nouvelle famille',4,2,2,2,'2022-03-23');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (7,4,'Une véritable prouesse !!',7,4,4,4,'2022-03-16');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (8,4,'Incroyable réalisation',2,4,4,4,'2022-03-15');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (9,5,'Y pense toujours',7,4,4,4,'2022-03-16');
+INSERT INTO lfc.comments (COM_ID,RES_ID,ANSWERS,ID_OWNER,IS_RESPONSE,ID_RESPONSE_TO_USR,IS_SIGNALED,CREATED_AT) VALUES (10,6,'Parfois on ne peut pas réussir',8,4,4,4,'2022-03-17');
 
 
 /*==============================================================*/
