@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'cascade',
 			hooks: true
 		});
-		Ressource.belongsTo(models.Media, {
+		Ressource.hasMany(models.Media, {
 			as: "media",
 			foreignKey: "res_id",
 		});
@@ -58,5 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: false,
     freezeTableName: true,
   });
+
+ //
   return Ressource;
 };

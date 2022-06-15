@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-		Media.hasOne(models.Ressource, {
+		Media.belongsTo(models.Ressource, {
 			as: 'media',
 			foreignKey: 'res_id',
 			onDelete: 'cascade',
@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
 		primaryKey: true
-    },
-    res_id: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
     },
     path: DataTypes.STRING,
     is_picture: DataTypes.INTEGER,

@@ -1,6 +1,20 @@
 import RessourceController from '../controllers/ressource/index.js';
 import express from 'express';
+import multer from "multer";
 var router = express.Router();
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/upload/images/ressource/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "__" + file.originalname )
+    }
+});
+
+const upload = multer({ storage: storage});
 
 /**
 * @swagger
@@ -71,7 +85,7 @@ export default (app) => {
      *          '500':
      *              description: Bad request
      */
-    router.post("/", RessourceController.create);
+    router.post("/", upload.single('file') , RessourceController.create);
 
     /**
      * @swagger
