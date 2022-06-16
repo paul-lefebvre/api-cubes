@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
 		Media.belongsTo(models.Ressource, {
-			as: 'media',
-			foreignKey: 'res_id',
+			as: 'ressource',
+		//	foreignKey: 'res_id',
 			onDelete: 'cascade',
 			hooks: true
 		});

@@ -1,7 +1,7 @@
-const { Model } = require('sequelize');
+const {Model} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Ressource extends Model {
+    class Ressource extends Model {
 
 	static associate(models) {
 		Ressource.hasMany(models.Comment,{
@@ -59,6 +59,6 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
   });
 
- //
-  return Ressource;
+    //
+    return Ressource;
 };
