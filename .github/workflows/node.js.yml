@@ -1,0 +1,72 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.X'
+      - run: npm install
+      - run: npm run build --if-present
+
+  deploy:
+    - name: ssh deploy
+      # You may pin to the exact commit or the version.
+      # uses: easingthemes/ssh-deploy@c711f2c3391cac2876bf4c833590077f02e4bcb8
+      uses: easingthemes/ssh-deploy@v2.2.11
+      with:
+        # Private Key
+        SSH_PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAg2hDn2r3gYM0hQXh+mqxabbnqOl4fA7xYW6ZRrB7Ygy42C2i
+BmWByqZPcQMtAh8PUTYYcUaz/cphyUEYvyBRwyBFHkHcCofXo/mMqvmEX+Fz7xx3
+FTwus+08CZkt5vLBdOOdnhdc33JsBs+KMdpFxBDjwFQLFV8hIMhcP2vcI1IsYZj9
+c4eVLZG2XAiIpbHL21oFSlV/WLA/wUwXEA7Fj3D3h/w/ktnqkPI7G5OnTIqorj/v
+a+v3eKOr5Ks+9L3e5Isq+Vs+dlaPvcmS1JCfou6uRjS2r02JGoIjrp5SDjcuZ6+c
+vTKIp1F0UQfqJYzAySHyROZp1bZMqynrUi4XTQIDAQABAoIBADVhH0cc7pm/sI/w
+ydEtkg/9arFk1bqfX1JS2RSsEBLOVDAMqWqrxUOKt26S+a+I6nH05YzuSaNomLxm
+IyVQfaYj76/Q1Q+6CtDjSE8TuMAyFyQkjgMkRVx1nBPSE6FjL07KP3a+ys1B77v8
+hoilv/1bVwkDmtT9pblpan+g0vXNkGwWT2uaKKuKDlPi472wYZqIn3lyz31T6ybO
+HF7pxxTVbcH8Gt2gXjtXU04lmRs7MMHKEjeGWfcQmDIW3WZ/Sbq2laF/Ddvqge3E
+9c/leRtF+nUAshNpjJUE5xvGc2MO9tPZmmDN3yt1AsWLbpU4DHPaNrsbKdf4o9lx
+2EEmz8kCgYEAv9tnaQ6EiXvZPf6PuDfZxpTulEwRQsTZYpBXZ2j5spiSax3KxXsC
+xewRNelkvJ8P1Dy0WgG++vNSLbEbLUDsCROzgIsGPYHIhvoXRml9l22OBHoKtVX0
+gxShAOn1f6AdgHSoX+zMwX2OTwsxiO6fty+gcVaIllaCGkJjYBAKdR8CgYEAr1cb
+LcqjkwjCM/Tp9fvpOJPsX8Kusng6QGJQEPogJuIOH5DtowCsRqFTRc1XD7/X/aYU
+Zsy8QIgQKxK+Dut9hN4NTRO49bHzPFLGjdaIFsKW3Lv1oCX7a58Mu+hlq9EHBnyS
+qz3Tky9WgCit7uRbIDe5D1U9mmKydUdkMX312hMCgYBl1O2JXHRKiNrgxdnAnJxR
+g8EyI0HSH6uGXjiWIajO+55TjoeO0+C/7rGf3NZkK0T6kJHlaCHXDwkiSWu0VE4z
+7yoKY0AXq2glBF8QN3O6ySJlC+XdI9dZL7zZQFTWvcSK5uBrscNoO90p5TYQiR9q
+2rOdFKIAsb/yciRO25TBXwKBgGmn4H3IZKbeGT/7rduHD7MDF+VgR6rNXbScSUjh
+n+wuPXpx93BIoIbzAV3HbVXVMU7r+9EyP6HXG38JDTOqXXlp4LP4VXTf5QUNkA26
+H0kvun6KWGlHWegw8Bhu4o0VKNmUyUCcwdgoJ0SUvrJ8MhkI2t/NapCUNpsLCOn1
+z+a3AoGASXxHv9RRFeu31vgC1EC48ry2kw8Pf4PY58qWECjgZfK3BYuyY/Ug2bYv
+BPA9A15OGTX8bFi85Fpw1yhbUQx26/9yt5dqjaTa10f5mWfOdwyyHgkTjyqONIZn
+5aXkCfla47r7WLNoOGmJ0bcOmlyAnYHYJY5J6aW2c2zLURV+Ce0=
+-----END RSA PRIVATE KEY-----"
+        # Remote host
+        REMOTE_HOST: 52.47.96.18
+        # Remote user
+        REMOTE_USER: admin
+        # Remote port
+        REMOTE_PORT: # optional, default is 22
+        # Source directory
+        SOURCE: # optional, default is
+        # Target directory
+        TARGET: # optional, default is /home/REMOTE_USER/
+        # Arguments to pass to rsync
+        ARGS: # optional, default is -rltgoDzvO
+        # An array of folder to exclude
+        EXCLUDE: node_modules
+
+
+
+
