@@ -25,7 +25,7 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.2.11
       with:
         # Private Key
-        SSH_PRIVATE_KEY: -----BEGIN RSA PRIVATE KEY-----
+        SSH_PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQEAg2hDn2r3gYM0hQXh+mqxabbnqOl4fA7xYW6ZRrB7Ygy42C2i
 BmWByqZPcQMtAh8PUTYYcUaz/cphyUEYvyBRwyBFHkHcCofXo/mMqvmEX+Fz7xx3
 FTwus+08CZkt5vLBdOOdnhdc33JsBs+KMdpFxBDjwFQLFV8hIMhcP2vcI1IsYZj9
@@ -51,7 +51,7 @@ H0kvun6KWGlHWegw8Bhu4o0VKNmUyUCcwdgoJ0SUvrJ8MhkI2t/NapCUNpsLCOn1
 z+a3AoGASXxHv9RRFeu31vgC1EC48ry2kw8Pf4PY58qWECjgZfK3BYuyY/Ug2bYv
 BPA9A15OGTX8bFi85Fpw1yhbUQx26/9yt5dqjaTa10f5mWfOdwyyHgkTjyqONIZn
 5aXkCfla47r7WLNoOGmJ0bcOmlyAnYHYJY5J6aW2c2zLURV+Ce0=
------END RSA PRIVATE KEY-----
+-----END RSA PRIVATE KEY-----"
         # Remote host
         REMOTE_HOST: 52.47.96.18
         # Remote user
